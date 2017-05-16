@@ -1,0 +1,12 @@
+# Compiler Output
+*.o
+*.exe
+*.out
+
+# Eclipse Project Files
+.settings
+.project
+.cproject
+
+# Logs
+*.log
