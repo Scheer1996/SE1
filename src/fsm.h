@@ -11,7 +11,7 @@
 #ifndef FSM_H
 #define	FSM_H
 #include "FestoProcessAccess.h"
-#include "plugin.h"
+#include "Plugin.h"
 
 enum fsm_states { Start, Standby, Ready, Transport, MetalDetection, NonMetalic, Metalic, SlideReached, Error, EndReached};
 

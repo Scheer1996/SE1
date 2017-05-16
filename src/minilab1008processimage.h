@@ -12,7 +12,7 @@
 #ifndef MINILAB1008PROCESSIMAGE_H
 #define	MINILAB1008PROCESSIMAGE_H
 
-#include "processimage.h"
+#include "FestoProcessImage.h"
 // if SIL is defined, no hardware interface is accessed or compiled in.
 #define SIL
 

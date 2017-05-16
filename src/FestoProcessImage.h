@@ -22,7 +22,11 @@ public:
     virtual void clearBitInOutput(unsigned short bitMask)=0;
     virtual unsigned short hight()=0;
     virtual void resetOutputs(void)=0;
+
+    virtual ~FestoProcessImage();
 };
+
+inline FestoProcessImage::~FestoProcessImage(){}
 
 #endif	/* PROCESSIMAGE_H */
 

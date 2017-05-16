@@ -17,7 +17,7 @@
 
 #include "FestoProcessSensors.h"
 #include "FestoProcessActuators.h"
-#include "processimage.h"
+#include "FestoProcessImage.h"
 
 #define LOG_PROCESS
 

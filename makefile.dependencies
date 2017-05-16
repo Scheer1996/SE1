@@ -1,0 +1,15 @@
+main.o: src/main.cpp src/factory.h src/fsm.h src/FestoProcessAccess.h \
+ src/FestoProcessSensors.h src/FestoProcessActuators.h \
+ src/FestoProcessImage.h src/Plugin.h
+FestoProcessAccess.o: src/FestoProcessAccess.cpp src/iomasks.h \
+ src/FestoProcessAccess.h src/FestoProcessSensors.h \
+ src/FestoProcessActuators.h src/FestoProcessImage.h
+fsm.o: src/fsm.cpp src/fsm.h src/FestoProcessAccess.h \
+ src/FestoProcessSensors.h src/FestoProcessActuators.h \
+ src/FestoProcessImage.h src/Plugin.h
+factory.o: src/factory.cpp src/factory.h src/fsm.h \
+ src/FestoProcessAccess.h src/FestoProcessSensors.h \
+ src/FestoProcessActuators.h src/FestoProcessImage.h src/Plugin.h \
+ src/minilab1008processimage.h
+minilab1008processimage.o: src/minilab1008processimage.cpp \
+ src/minilab1008processimage.h src/FestoProcessImage.h
