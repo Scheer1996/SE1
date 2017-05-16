@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include "factory.h"
+#include "FSMFactory.h"
 
 using namespace std;
 

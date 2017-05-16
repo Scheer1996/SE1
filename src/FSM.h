@@ -13,11 +13,11 @@
 #include "FestoProcessAccess.h"
 #include "Plugin.h"
 
-enum fsm_states { Start, Standby, Ready, Transport, MetalDetection, NonMetalic, Metalic, SlideReached, Error, EndReached};
+enum FSMStates { START, STANDBY, READY, TRANSPORT, HEIGHT_MEASURE, PART_OK, PART_BAD, START_REACHED, ERROR, END_REACHED};
 
 class FSM {
 private:
-    fsm_states currentState;
+    FSMStates currentState;
     FestoProcessAccess *process;
     Plugin* plugin;
 public:

@@ -20,7 +20,7 @@ public:
     virtual unsigned char isBitNegEdge(unsigned short bitMask)=0;
     virtual void setBitInOutput(unsigned short bitMask)=0;
     virtual void clearBitInOutput(unsigned short bitMask)=0;
-    virtual unsigned short hight()=0;
+    virtual unsigned short height()=0;
     virtual void resetOutputs(void)=0;
 
     virtual ~FestoProcessImage();

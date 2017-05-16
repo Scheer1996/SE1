@@ -18,11 +18,11 @@
 
 class FestoMiniLab1008ProcessImage : public FestoProcessImage {
 private:
-    unsigned short process_image;
-    unsigned short process_image_old;
-    unsigned short process_image_change;
-    unsigned short output_image;
-    unsigned short height_analogue_value;
+    unsigned short processImage;
+    unsigned short processImageOld;
+    unsigned short processImageChange;
+    unsigned short outputImage;
+    unsigned short heightAnalogueValue;
 public:
     FestoMiniLab1008ProcessImage();
     virtual ~FestoMiniLab1008ProcessImage();
@@ -35,7 +35,7 @@ public:
     virtual void setBitInOutput(unsigned short bitMask);
     virtual void clearBitInOutput(unsigned short bitMask);
     virtual void resetOutputs(void);
-    virtual unsigned short hight();
+    virtual unsigned short height();
 private:
     void initProcessImageLayer(void);
 };

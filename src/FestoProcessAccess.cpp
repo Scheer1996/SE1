@@ -39,7 +39,7 @@ void FestoProcessAccess::updateInputs(void) {
 }
 void FestoProcessAccess::logProcessData(){
     if(logFile!=NULL){
-        fprintf(logFile,"%i; %i; %i\n", (int)timeCounter1s(), isItemAtHightSensor(), getHight());
+        fprintf(logFile,"%i; %i; %i\n", (int)timeCounter1s(), isItemAtHeightSensor(), getHight());
         fflush(logFile);
     }
 }
@@ -81,27 +81,27 @@ void FestoProcessAccess::closeJunction(void) {
     process->clearBitInOutput(JUNCTION_OPEN);
 }
 
-void FestoProcessAccess::lightGreenOn(void) {
+void FestoProcessAccess::turnLightGreenOn(void) {
     process->setBitInOutput(TRAFIC_LIGHT_GREEN);
 }
 
-void FestoProcessAccess::lightGreenOff(void) {
+void FestoProcessAccess::turnLightGreenOff(void) {
     process->clearBitInOutput(TRAFIC_LIGHT_GREEN);
 }
 
-void FestoProcessAccess::lightYellowOn(void) {
+void FestoProcessAccess::turnLightYellowOn(void) {
     process->setBitInOutput(TRAFIC_LIGHT_YELLOW);
 }
 
-void FestoProcessAccess::lightYellowOff(void) {
+void FestoProcessAccess::turnLightYellowOff(void) {
     process->clearBitInOutput(TRAFIC_LIGHT_YELLOW);
 }
 
-void FestoProcessAccess::lightRedOn(void) {
+void FestoProcessAccess::turnLightRedOn(void) {
     process->setBitInOutput(TRAFIC_LIGHT_RED);
 }
 
-void FestoProcessAccess::lightRedOff(void) {
+void FestoProcessAccess::turnLightRedOff(void) {
     process->clearBitInOutput(TRAFIC_LIGHT_RED);
 }
 
@@ -145,7 +145,7 @@ bool FestoProcessAccess::isItemAtBeginning(void) {
     return !(process->isBitSet(ITEM_DETECTED)); // active low
 }
 
-bool FestoProcessAccess::isItemAtHightSensor(void) {
+bool FestoProcessAccess::isItemAtHeightSensor(void) {
     return !(process->isBitSet(ITEM_AT_HIGHT_SENSOR)); // active low
 };
 
@@ -196,7 +196,7 @@ bool FestoProcessAccess::isButtonEmergencyActive(void) {
     return !(process->isBitSet(EMERGENCY_STOP_PRESSED)); // active low
 }
 unsigned short FestoProcessAccess::getHight(){
-    return process->hight();
+    return process->height();
 }
 
 time_t FestoProcessAccess::timeCounter1s(){

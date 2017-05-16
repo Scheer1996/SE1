@@ -42,12 +42,12 @@ public:
     virtual void driveStop(void);
     virtual void openJunction(void);
     virtual void closeJunction(void);
-    virtual void lightGreenOn(void);
-    virtual void lightGreenOff(void);
-    virtual void lightYellowOn(void);
-    virtual void lightYellowOff(void);
-    virtual void lightRedOn(void);
-    virtual void lightRedOff(void);
+    virtual void turnLightGreenOn(void);
+    virtual void turnLightGreenOff(void);
+    virtual void turnLightYellowOn(void);
+    virtual void turnLightYellowOff(void);
+    virtual void turnLightRedOn(void);
+    virtual void turnLightRedOff(void);
     virtual void turnLEDStartOn(void);
     virtual void turnLEDStartOff(void);
     virtual void turnLEDResetOn(void);
@@ -59,7 +59,7 @@ public:
     virtual void turnAllOff(void);
 
     virtual bool isItemAtBeginning(void);
-    virtual bool isItemAtHightSensor(void);
+    virtual bool isItemAtHeightSensor(void);
     virtual bool isItemAtMetalDetector(void);
     virtual bool isMetalDetected(void);
     virtual bool isJunctionOpen(void);

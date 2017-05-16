@@ -8,9 +8,10 @@
  * \date    2013-11-10
  */
 
-#include "factory.h"
 #include "FestoProcessAccess.h"
-#include "minilab1008processimage.h"
+#include "FSMFactory.h"
+
+#include "FestoMiniLab1008ProcessImage.h"
 
 FSM* FSMFactory::createFSM(){
        // Create Objects

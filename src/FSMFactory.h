@@ -11,7 +11,7 @@
 #ifndef FACTORY_H
 #define	FACTORY_H
 
-#include "fsm.h"
+#include "FSM.h"
 
 class FSMFactory{
 public:

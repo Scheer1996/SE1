@@ -8,11 +8,11 @@
  * \date    2013-11-01
  */
 
-#include "fsm.h"
+#include "FSM.h"
 
 FSM::FSM(FestoProcessAccess *process, Plugin* plugin = 0) {
     this->process = process;
-    currentState = Start;
+    currentState = FSMStates::START;
     this->plugin = plugin;
 }
 
@@ -33,34 +33,34 @@ void FSM::eval() {
 
 void FSM::evalEvents() {
     switch (currentState) {
-        case Start:
-            currentState = Standby;
+        case FSMStates::START:
+            currentState = FSMStates::STANDBY;
             break;
-        case Standby:
+        case FSMStates::STANDBY:
             if (process->isButtonStartNegativeEdge()) {
-                currentState = Ready;
+                currentState = FSMStates::READY;
             }
             break;
-        case Ready:
+        case FSMStates::READY:
             if (process->isButtonStartNegativeEdge()) {
-                currentState = Standby;
+                currentState = FSMStates::STANDBY;
             }
             if (process->isItemAtBeginning()&& !process->isItemAtEnd()) {
-                currentState = Transport;
+                currentState = FSMStates::TRANSPORT;
             }
-            if (process->isItemAtHightSensor() || process->isItemAtMetalDetector()) {
-                currentState = Error;
+            if (process->isItemAtHeightSensor() || process->isItemAtMetalDetector()) {
+                currentState = FSMStates::ERROR;
             }
             break;
-        case Transport:
+        case FSMStates::TRANSPORT:
             if (process->isItemAtMetalDetector()) {
-                currentState = MetalDetection;
+                //TODO: currentState = MetalDetection;
             }
             if (process->isItemAtEnd()) {
-                currentState = Error;
+                currentState = FSMStates::ERROR;
             }
             break;
-        case MetalDetection:
+        /*case MetalDetection:
             if (process->isMetalDetected()) {
                 currentState = Metalic;
             } else {
@@ -71,26 +71,26 @@ void FSM::evalEvents() {
             if (process->isItemAtEnd()) {
                 currentState = EndReached;
             }
-            if (process->isItemAtBeginning() || process->isItemAtHightSensor()) {
+            if (process->isItemAtBeginning() || process->isItemAtHeightSensor()) {
                 currentState = Error;
             }
-            break;
-        case EndReached:
+            break;*/
+        case FSMStates::END_REACHED:
             if (process->isButtonStartNegativeEdge()) {
-                currentState = Standby;
+                currentState = FSMStates::START;
             }
             if (!(process->isItemAtEnd())) {
-                currentState = Ready;
+                currentState = FSMStates::READY;
             }
-            if (process->isItemAtMetalDetector() || process->isItemAtHightSensor()) {
-                currentState = Error;
+            if (process->isItemAtMetalDetector() || process->isItemAtHeightSensor()) {
+                currentState = FSMStates::ERROR;
             }
             break;
-        case Metalic:
+        /*case Metalic:
             if (process->hasItemPassedSlide()) {
                 currentState = SlideReached;
             }
-            if (process->isItemAtBeginning() || process->isItemAtHightSensor()) {
+            if (process->isItemAtBeginning() || process->isItemAtHeightSensor()) {
                 currentState = Error;
             }
             break;
@@ -101,17 +101,17 @@ void FSM::evalEvents() {
             if (process->isItemAtBeginning()) {
                 currentState = Transport;
             }
-            if (process->isItemAtEnd() || process->isItemAtHightSensor()) {
+            if (process->isItemAtEnd() || process->isItemAtHeightSensor()) {
                 currentState = Error;
             }
-            break;
-        case Error:
+            break;*/
+        case FSMStates::ERROR:
             if (process->isButtonStartNegativeEdge()) {
-                currentState = Standby;
+                currentState = FSMStates::STANDBY;
             }
             break;
         default:
-            currentState = Start;
+            currentState = FSMStates::START;
     }
 }
 
@@ -120,9 +120,9 @@ void FSM::evalState() {
         case Start:
         case Standby:
             process->driveStop();
-            process->lightGreenOff();
-            process->lightRedOff();
-            process->lightYellowOff();
+            process->turnLightGreenOff();
+            process->turnLightRedOff();
+            process->turnLightYellowOff();
             process->turnLEDQ1Off();
             process->turnLEDQ2Off();
             process->turnLEDResetOff();
@@ -130,36 +130,36 @@ void FSM::evalState() {
             break;
         case Ready:
             process->driveStop();
-            process->lightGreenOn();
-            process->lightRedOff();
-            process->lightYellowOff();
+            process->turnLightGreenOn();
+            process->turnLightRedOff();
+            process->turnLightYellowOff();
             process->turnLEDStartOn();
             break;
         case Transport:
             process->driveRight();
-            process->lightGreenOn();
-            process->lightRedOff();
-            process->lightYellowOff();
+            process->turnLightGreenOn();
+            process->turnLightRedOff();
+            process->turnLightYellowOff();
             process->turnLEDStartOff();
             break;
         case MetalDetection:
             process->driveStop();
-            process->lightGreenOn();
-            process->lightRedOff();
-            process->lightYellowOff();
+            process->turnLightGreenOn();
+            process->turnLightRedOff();
+            process->turnLightYellowOff();
             break;
         case NonMetalic:
             process->driveRight();
-            process->lightGreenOn();
-            process->lightRedOff();
-            process->lightYellowOff();
+            process->turnLightGreenOn();
+            process->turnLightRedOff();
+            process->turnLightYellowOff();
             process->turnLEDStartOff();
             process->openJunction();
             break;
         case EndReached:
             process->driveStop();
-            process->lightRedOff();
-            process->lightYellowOff();
+            process->turnLightRedOff();
+            process->turnLightYellowOff();
             process->turnLEDStartOff();
             process->closeJunction();
             process->turnLEDStartOn();
@@ -167,21 +167,21 @@ void FSM::evalState() {
             break;
         case Metalic:
             process->driveRight();
-            process->lightGreenOff();
-            process->lightRedOff();
-            process->lightYellowOn();
+            process->turnLightGreenOff();
+            process->turnLightRedOff();
+            process->turnLightYellowOn();
             break;
         case SlideReached:
             process->driveStop();
-            process->lightGreenOn();
-            process->lightRedOff();
-            process->lightYellowOff();
+            process->turnLightGreenOn();
+            process->turnLightRedOff();
+            process->turnLightYellowOff();
             process->turnLEDStartOn();
             break;
         case Error:
             process->driveStop();
-            process->lightGreenOff();
-            process->lightYellowOff();
+            process->turnLightGreenOff();
+            process->turnLightYellowOff();
             process->turnLEDStartOn();
             process->closeJunction();
             blinkRed();
@@ -192,16 +192,16 @@ void FSM::evalState() {
 
 void FSM::blinkRed() {
     if (process->timeCounter1s() & 0x01) {
-        process->lightRedOn();
+        process->turnLightRedOn();
     } else {
-        process->lightRedOff();
+        process->turnLightRedOff();
     }
 }
 
 void FSM::blinkGreen() {
     if (process->timeCounter1s() & 0x01) {
-        process->lightGreenOn();
+        process->turnLightGreenOn();
     } else {
-        process->lightGreenOff();
+        process->turnLightGreenOff();
     }
 }

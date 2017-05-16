@@ -1,15 +1,15 @@
-main.o: src/main.cpp src/factory.h src/fsm.h src/FestoProcessAccess.h \
+main.o: src/main.cpp src/FSMFactory.h src/FSM.h src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
  src/FestoProcessImage.h src/Plugin.h
+FSMFactory.o: src/FSMFactory.cpp src/FestoProcessAccess.h \
+ src/FestoProcessSensors.h src/FestoProcessActuators.h \
+ src/FestoProcessImage.h src/FSMFactory.h src/FSM.h src/Plugin.h \
+ src/FestoMiniLab1008ProcessImage.h
 FestoProcessAccess.o: src/FestoProcessAccess.cpp src/iomasks.h \
  src/FestoProcessAccess.h src/FestoProcessSensors.h \
  src/FestoProcessActuators.h src/FestoProcessImage.h
-fsm.o: src/fsm.cpp src/fsm.h src/FestoProcessAccess.h \
+FestoMiniLab1008ProcessImage.o: src/FestoMiniLab1008ProcessImage.cpp \
+ src/FestoMiniLab1008ProcessImage.h src/FestoProcessImage.h
+FSM.o: src/FSM.cpp src/FSM.h src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
  src/FestoProcessImage.h src/Plugin.h
-factory.o: src/factory.cpp src/factory.h src/fsm.h \
- src/FestoProcessAccess.h src/FestoProcessSensors.h \
- src/FestoProcessActuators.h src/FestoProcessImage.h src/Plugin.h \
- src/minilab1008processimage.h
-minilab1008processimage.o: src/minilab1008processimage.cpp \
- src/minilab1008processimage.h src/FestoProcessImage.h

@@ -15,7 +15,7 @@
 class FestoProcessSensors {
 public:
     virtual bool isItemAtBeginning(void) = 0;
-    virtual bool isItemAtHightSensor(void) = 0;
+    virtual bool isItemAtHeightSensor(void) = 0;
     virtual bool isItemAtMetalDetector(void) = 0;
     virtual bool isMetalDetected(void) = 0;
     virtual bool isJunctionOpen(void) = 0;
@@ -31,7 +31,11 @@ public:
     virtual unsigned short getHight() = 0;
 
     virtual time_t timeCounter1s() = 0;
+
+    virtual ~FestoProcessSensors();
 };
+
+inline FestoProcessSensors::~FestoProcessSensors(){}
 
 #endif	/* FESTOSENSORS_H */
 
