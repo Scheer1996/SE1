@@ -117,8 +117,8 @@ void FSM::evalEvents() {
 
 void FSM::evalState() {
     switch (currentState) {
-        case Start:
-        case Standby:
+        case FSMStates::START:
+        case FSMStates::STANDBY:
             process->driveStop();
             process->turnLightGreenOff();
             process->turnLightRedOff();
@@ -128,21 +128,21 @@ void FSM::evalState() {
             process->turnLEDResetOff();
             process->turnLEDStartOn();
             break;
-        case Ready:
+        case FSMStates::READY:
             process->driveStop();
             process->turnLightGreenOn();
             process->turnLightRedOff();
             process->turnLightYellowOff();
             process->turnLEDStartOn();
             break;
-        case Transport:
+        case FSMStates::TRANSPORT:
             process->driveRight();
             process->turnLightGreenOn();
             process->turnLightRedOff();
             process->turnLightYellowOff();
             process->turnLEDStartOff();
             break;
-        case MetalDetection:
+        /*case MetalDetection:
             process->driveStop();
             process->turnLightGreenOn();
             process->turnLightRedOff();
@@ -155,8 +155,8 @@ void FSM::evalState() {
             process->turnLightYellowOff();
             process->turnLEDStartOff();
             process->openJunction();
-            break;
-        case EndReached:
+            break;*/
+        case FSMStates::END_REACHED:
             process->driveStop();
             process->turnLightRedOff();
             process->turnLightYellowOff();
@@ -165,7 +165,7 @@ void FSM::evalState() {
             process->turnLEDStartOn();
             blinkGreen();
             break;
-        case Metalic:
+        /*case Metalic:
             process->driveRight();
             process->turnLightGreenOff();
             process->turnLightRedOff();
@@ -177,8 +177,8 @@ void FSM::evalState() {
             process->turnLightRedOff();
             process->turnLightYellowOff();
             process->turnLEDStartOn();
-            break;
-        case Error:
+            break;*/
+        case FSMStates::ERROR:
             process->driveStop();
             process->turnLightGreenOff();
             process->turnLightYellowOff();
