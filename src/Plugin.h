@@ -15,10 +15,8 @@ public:
     virtual void evalCycle() = 0;
     virtual bool result() = 0;
 
-    virtual ~Plugin();
+    virtual ~Plugin() = default;
 };
-
-inline Plugin::~Plugin(){}
 
 #endif	/* PLUGIN_H */
 

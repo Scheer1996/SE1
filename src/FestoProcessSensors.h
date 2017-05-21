@@ -32,10 +32,9 @@ public:
 
     virtual time_t timeCounter1s() = 0;
 
-    virtual ~FestoProcessSensors();
+    virtual ~FestoProcessSensors() = default;
 };
 
-inline FestoProcessSensors::~FestoProcessSensors(){}
 
 #endif	/* FESTOSENSORS_H */
 

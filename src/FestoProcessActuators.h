@@ -36,10 +36,8 @@ public:
     virtual void turnLEDQ2Off(void) = 0;
     virtual void turnAllOff(void) = 0;
 
-    virtual ~FestoProcessActuators();
+    virtual ~FestoProcessActuators() = default;
 };
-
-inline FestoProcessActuators::~FestoProcessActuators(){}
 
 #endif	
 

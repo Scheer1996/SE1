@@ -60,21 +60,21 @@ void FSM::evalEvents() {
                 currentState = FSMStates::ERROR;
             }
             break;
-        /*case MetalDetection:
+        case FSMStates::HEIGHT_MEASURE:
             if (process->isMetalDetected()) {
-                currentState = Metalic;
+                // currentState = Metalic;
             } else {
-                currentState = NonMetalic;
+                //currentState = NonMetalic;
             }
             break;
-        case NonMetalic:
+        case FSMStates::PART_OK:
             if (process->isItemAtEnd()) {
-                currentState = EndReached;
+                //currentState = EndReached;
             }
             if (process->isItemAtBeginning() || process->isItemAtHeightSensor()) {
-                currentState = Error;
+                //currentState = Error;
             }
-            break;*/
+            break;
         case FSMStates::END_REACHED:
             if (process->isButtonStartNegativeEdge()) {
                 currentState = FSMStates::START;
@@ -86,25 +86,25 @@ void FSM::evalEvents() {
                 currentState = FSMStates::ERROR;
             }
             break;
-        /*case Metalic:
+        case FSMStates::PART_BAD:
             if (process->hasItemPassedSlide()) {
-                currentState = SlideReached;
+                //currentState = SlideReached;
             }
             if (process->isItemAtBeginning() || process->isItemAtHeightSensor()) {
-                currentState = Error;
+                //currentState = Error;
             }
             break;
-        case SlideReached:
+        case FSMStates::START_REACHED:
             if (process->isButtonStartNegativeEdge()) {
-                currentState = Standby;
+                //currentState = Standby;
             }
             if (process->isItemAtBeginning()) {
-                currentState = Transport;
+                //currentState = Transport;
             }
             if (process->isItemAtEnd() || process->isItemAtHeightSensor()) {
-                currentState = Error;
+                //currentState = Error;
             }
-            break;*/
+            break;
         case FSMStates::ERROR:
             if (process->isButtonStartNegativeEdge()) {
                 currentState = FSMStates::STANDBY;
@@ -142,20 +142,20 @@ void FSM::evalState() {
             process->turnLightYellowOff();
             process->turnLEDStartOff();
             break;
-        /*case MetalDetection:
+        case FSMStates::HEIGHT_MEASURE:
             process->driveStop();
             process->turnLightGreenOn();
             process->turnLightRedOff();
             process->turnLightYellowOff();
             break;
-        case NonMetalic:
+        case FSMStates::PART_OK:
             process->driveRight();
             process->turnLightGreenOn();
             process->turnLightRedOff();
             process->turnLightYellowOff();
             process->turnLEDStartOff();
             process->openJunction();
-            break;*/
+            break;
         case FSMStates::END_REACHED:
             process->driveStop();
             process->turnLightRedOff();
@@ -165,19 +165,19 @@ void FSM::evalState() {
             process->turnLEDStartOn();
             blinkGreen();
             break;
-        /*case Metalic:
+        case FSMStates::PART_BAD:
             process->driveRight();
             process->turnLightGreenOff();
             process->turnLightRedOff();
             process->turnLightYellowOn();
             break;
-        case SlideReached:
+        case FSMStates::START_REACHED:
             process->driveStop();
             process->turnLightGreenOn();
             process->turnLightRedOff();
             process->turnLightYellowOff();
             process->turnLEDStartOn();
-            break;*/
+            break;
         case FSMStates::ERROR:
             process->driveStop();
             process->turnLightGreenOff();

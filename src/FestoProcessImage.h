@@ -23,10 +23,8 @@ public:
     virtual unsigned short height()=0;
     virtual void resetOutputs(void)=0;
 
-    virtual ~FestoProcessImage();
+    virtual ~FestoProcessImage() = default;
 };
-
-inline FestoProcessImage::~FestoProcessImage(){}
 
 #endif	/* PROCESSIMAGE_H */
 
