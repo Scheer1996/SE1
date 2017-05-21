@@ -1,6 +1,7 @@
 main.o: src/main.cpp src/FSMFactory.h src/FSM.h src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
- src/FestoProcessImage.h src/Plugin.h
+ src/FestoProcessImage.h src/Plugin.h src/Measurement.h
+Measurement.o: src/Measurement.cpp src/Measurement.h
 FSMFactory.o: src/FSMFactory.cpp src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
  src/FestoProcessImage.h src/FSMFactory.h src/FSM.h src/Plugin.h \
