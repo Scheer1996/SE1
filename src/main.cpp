@@ -8,7 +8,7 @@
 #include <iostream>
 #include "FSMFactory.h"
 
-#include "Measurement.h"
+#include "Part.h"
 
 using namespace std;
 
@@ -31,6 +31,16 @@ int main(int argc, char** argv) {
 #elif 1
     Measurement m(100);
     std::cout << m << std::endl;
+
+    Part p;
+    std::cout << p << std::endl;
+
+    p.addMeasurement(m);
+    std::cout << p << std::endl;
+
+    using namespace std::chrono;
+    p.addMeasurement({10, system_clock::now() + 300ms});
+    std::cout << p << std::endl;
 #endif
     return 0;
 }

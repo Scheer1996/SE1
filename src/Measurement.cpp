@@ -10,29 +10,29 @@
 /**
  * Construct a Measurement from height with current timestamp.
  *
- * @param measurement the height
+ * @param value the value
  */
-Measurement::Measurement(int measurement) :
-        measurement(measurement), timestamp(std::chrono::system_clock::now()) {
+Measurement::Measurement(int value) :
+        value(value), timestamp(std::chrono::system_clock::now()) {
 }
 
 /**
  * Construct a measurement from height and timestamp
  *
- * @param measurement the height
- * @param timestamp   the Timestamp
+ * @param value     the value
+ * @param timestamp the Timestamp
  */
-Measurement::Measurement(int measurement, Timestamp timestamp) :
-        measurement(measurement), timestamp(timestamp) {
+Measurement::Measurement(int value, Timestamp timestamp) :
+        value(value), timestamp(timestamp) {
 }
 
 /**
- * Get the measured height
+ * Get the value of the measurement
  *
- * @return the height
+ * @return the value
  */
-int Measurement::getMeasurement() const {
-    return measurement;
+int Measurement::getValue() const {
+    return value;
 }
 
 /**
@@ -56,7 +56,7 @@ std::ostream& operator <<(std::ostream& os, const Measurement& m) {
     std::time_t tm = std::chrono::system_clock::to_time_t(m.getTimestamp());
 
     // print
-    os << "Measurement: " << m.getMeasurement() << " at "
+    os << "Measurement: " << m.getValue() << " at "
             << std::put_time(std::localtime(&tm), "%H:%M:%S");
 
     return os;

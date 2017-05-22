@@ -23,18 +23,15 @@ using Timestamp = std::chrono::system_clock::time_point;
  */
 class Measurement {
 private:
-    int measurement;
-    Timestamp timestamp;
+    int value;           ///< the value of the measurement that was taken
+    Timestamp timestamp; ///< the Timestamp of when the measurement was taken
 public:
     Measurement(int measurement);
     Measurement(int measurement, Timestamp timestamp);
 
-    int getMeasurement() const;
+    int getValue() const;
     Timestamp getTimestamp() const;
 };
-
-std::string to_string(const Measurement& m);
-std::string to_string(const Measurement* m);
 
 std::ostream& operator<<(std::ostream& os, const Measurement& m);
 std::ostream& operator<<(std::ostream& os, const Measurement* m);

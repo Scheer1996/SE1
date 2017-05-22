@@ -1,6 +1,6 @@
 main.o: src/main.cpp src/FSMFactory.h src/FSM.h src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
- src/FestoProcessImage.h src/Plugin.h src/Measurement.h
+ src/FestoProcessImage.h src/Plugin.h src/Part.h src/Measurement.h
 Measurement.o: src/Measurement.cpp src/Measurement.h
 FSMFactory.o: src/FSMFactory.cpp src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
@@ -14,3 +14,4 @@ FestoMiniLab1008ProcessImage.o: src/FestoMiniLab1008ProcessImage.cpp \
 FSM.o: src/FSM.cpp src/FSM.h src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
  src/FestoProcessImage.h src/Plugin.h
+Part.o: src/Part.cpp src/Part.h src/Measurement.h
