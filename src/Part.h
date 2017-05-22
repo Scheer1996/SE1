@@ -18,11 +18,14 @@
  */
 class Part {
 private:
-    std::vector<Measurement> measurements;
+    std::vector<Measurement> measurements; ///< container for the Measurements
 public:
     void addMeasurement(Measurement& m);
     void addMeasurement(Measurement&& m);
     const std::vector<Measurement>& getMeasurements() const;
+
+    bool hasMeasurements() const;
+    int getOffsetInMS(const Measurement& m) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Part& m);
