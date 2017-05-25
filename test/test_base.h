@@ -88,7 +88,8 @@
  *
  * @return true if act == exp
  */
-bool assert_equals(std::string msg, int act, int exp, std::string file, int line);
+bool assert_equals(std::string msg, int act, int exp, std::string file,
+        int line);
 
 /**
  * Performs an Assertion
@@ -101,7 +102,8 @@ bool assert_equals(std::string msg, int act, int exp, std::string file, int line
  *
  * @return true if act == exp
  */
-bool assert_equals(std::string msg, double act, double exp, std::string file, int line);
+bool assert_equals(std::string msg, double act, double exp, std::string file,
+        int line);
 
 /**
  * Checks if a result was true
@@ -115,7 +117,32 @@ bool assert_equals(std::string msg, double act, double exp, std::string file, in
  */
 bool assert_true(std::string msg, bool res, std::string file, int line);
 
-/*template<class T>
- bool assert_equals(std::string msg, T act, T exp);*/
+/**
+ * Performs an Assertion
+ *
+ * @param msg  the message to print in case of error
+ * @param act  the actual result
+ * @param exp  the expected result
+ * @param file the filename (for error message)
+ * @param line the line in the file (for error message)
+ *
+ * @return true if !(act != exp)
+ */
+template<class T>
+bool assert_equals(std::string msg, const T& act, const T& exp,
+        std::string file, int line);
+
+// template needs to be implemented in header
+template<class T>
+inline bool assert_equals(std::string msg, const T& act, const T& exp,
+        std::string file, int line) {
+    if (act != exp) {
+        std::cout << RED << "Failed! - " << msg << ": expected <" << exp
+                << "> but was <" << act << "> - " << file << ":" << line
+                << RESET << std::endl;
+        return false;
+    }
+    return true;
+}
 
 #endif /* TEST_BASE_H_ */

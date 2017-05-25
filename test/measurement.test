@@ -3,10 +3,18 @@
  * ***************************************************************** */
 #include "test_base.h"
 #include "src/Measurement.h"
+#include <chrono>
 
 bool testMeasurement() {
+    using namespace std::chrono;
+
     INIT_TEST
-    Measurement m(300);
-    ASSERT_EQUALS("Wrong value!", m.getValue(), 300);
+    const auto TS = system_clock::now();
+    const int VALUE = 300;
+
+    Measurement m(VALUE, TS);
+
+    ASSERT_EQUALS("Wrong value!", m.getValue(), VALUE);
+    ASSERT_TRUE("Wrong timestamp!", m.getTimestamp() == TS);
     END_TEST
 }
