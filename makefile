@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++14 -g -Wall -Wfatal-errors -Werror -I.
+CXXFLAGS = -std=c++14 -g -Wall -Wfatal-errors -I.
 LDFLAGS = -g
 LDLIBS =
 

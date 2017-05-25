@@ -72,7 +72,7 @@ public:
     virtual bool isButtonStopPressed(void);
     virtual bool isButtonResetPressed(void);
     virtual bool isButtonEmergencyActive(void);
-    virtual unsigned short getHight();
+    virtual unsigned short getHeight();
 
     virtual time_t timeCounter1s();
 private:

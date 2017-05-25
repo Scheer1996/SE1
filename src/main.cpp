@@ -23,11 +23,12 @@ int main(int argc, char** argv) {
     FSM* fsm = factory.createFSM();
 
     // Start Processing
-    while (!fsm && run) {
+    while (fsm && run) {
         fsm->eval();
     }
 
     delete fsm;
+    fsm = nullptr;
 #elif 1
     Measurement m(100);
     std::cout << m << std::endl;

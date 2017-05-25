@@ -11,6 +11,9 @@ FestoProcessAccess.o: src/FestoProcessAccess.cpp src/iomasks.h \
  src/FestoProcessActuators.h src/FestoProcessImage.h
 FestoMiniLab1008ProcessImage.o: src/FestoMiniLab1008ProcessImage.cpp \
  src/FestoMiniLab1008ProcessImage.h src/FestoProcessImage.h
+AbstractPartChecker.o: src/AbstractPartChecker.cpp \
+ src/AbstractPartChecker.h src/Plugin.h src/Part.h src/Measurement.h \
+ src/FestoProcessSensors.h
 FSM.o: src/FSM.cpp src/FSM.h src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
  src/FestoProcessImage.h src/Plugin.h

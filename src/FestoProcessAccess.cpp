@@ -39,7 +39,7 @@ void FestoProcessAccess::updateInputs(void) {
 }
 void FestoProcessAccess::logProcessData(){
     if(logFile!=NULL){
-        fprintf(logFile,"%i; %i; %i\n", (int)timeCounter1s(), isItemAtHeightSensor(), getHight());
+        fprintf(logFile,"%i; %i; %i\n", (int)timeCounter1s(), isItemAtHeightSensor(), getHeight());
         fflush(logFile);
     }
 }
@@ -195,7 +195,7 @@ bool FestoProcessAccess::isButtonResetPressed(void) {
 bool FestoProcessAccess::isButtonEmergencyActive(void) {
     return !(process->isBitSet(EMERGENCY_STOP_PRESSED)); // active low
 }
-unsigned short FestoProcessAccess::getHight(){
+unsigned short FestoProcessAccess::getHeight(){
     return process->height();
 }
 

@@ -28,7 +28,7 @@ public:
     virtual bool isButtonStopPressed(void) = 0;
     virtual bool isButtonResetPressed(void) = 0;
     virtual bool isButtonEmergencyActive(void) = 0;
-    virtual unsigned short getHight() = 0;
+    virtual unsigned short getHeight() = 0;
 
     virtual time_t timeCounter1s() = 0;
 
