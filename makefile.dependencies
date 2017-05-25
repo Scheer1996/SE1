@@ -15,3 +15,6 @@ FSM.o: src/FSM.cpp src/FSM.h src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
  src/FestoProcessImage.h src/Plugin.h
 Part.o: src/Part.cpp src/Part.h src/Measurement.h
+main.o: test/main.cpp test/test_base.h test/measurement.test \
+ src/Measurement.h
+test_base.o: test/test_base.cpp test/test_base.h

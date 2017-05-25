@@ -1,0 +1,12 @@
+/* *******************************************************************
+ * Measurement
+ * ***************************************************************** */
+#include "test_base.h"
+#include "src/Measurement.h"
+
+bool testMeasurement() {
+    INIT_TEST
+    Measurement m(300);
+    ASSERT_EQUALS("Wrong value!", m.getValue(), 300);
+    END_TEST
+}
