@@ -22,19 +22,25 @@ static constexpr int BELT_HEIGHT = 0;
 /**
  * Constructs an AbstractPartChecker
  *
- * @param sensors
+ * @param sensors  pointer to the HAL for accessing height sensor.
  */
 AbstractPartChecker::AbstractPartChecker(FestoProcessSensors* sensors) :
         currentPart(nullptr), sensors(sensors), state(PartCheckerState::IDLE), lastHeight(
                 0) {
 }
 
+/**
+ * Destructs an AbstractPartChecker.
+ */
 AbstractPartChecker::~AbstractPartChecker() {
     if (currentPart) {
         delete currentPart;
     }
 }
 
+/**
+ * Evaluate the internal (sub)FSM and therein perform Measurements.
+ */
 void AbstractPartChecker::evalCycle() {
     switch (state) {
         case PartCheckerState::IDLE:
@@ -76,6 +82,11 @@ void AbstractPartChecker::evalCycle() {
     }
 }
 
+/**
+ * Get the result of the measurement.
+ *
+ * @return true if the part was valid, false otherwise
+ */
 bool AbstractPartChecker::result() {
     if (currentPart && state == PartCheckerState::END_MEASURE) {
         // check if the part is valid
