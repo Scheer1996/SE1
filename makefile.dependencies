@@ -1,23 +1,29 @@
+Measurement.o: src/Measurement.cpp src/Measurement.h
+main.o: src/main.cpp src/FSMFactory.h src/FSM.h src/FestoProcessAccess.h \
+ src/FestoProcessSensors.h src/FestoProcessActuators.h \
+ src/FestoProcessImage.h src/Plugin.h src/LegoPartChecker.h \
+ src/AbstractPartChecker.h src/Part.h src/Measurement.h
+LegoPartChecker.o: src/LegoPartChecker.cpp src/LegoPartChecker.h \
+ src/AbstractPartChecker.h src/Plugin.h src/Part.h src/Measurement.h \
+ src/FestoProcessSensors.h
+FSMFactory.o: src/FSMFactory.cpp src/FestoProcessAccess.h \
+ src/FestoProcessSensors.h src/FestoProcessActuators.h \
+ src/FestoProcessImage.h src/FSMFactory.h src/FSM.h src/Plugin.h \
+ src/FestoMiniLab1008ProcessImage.h
+FestoProcessAccess.o: src/FestoProcessAccess.cpp src/iomasks.h \
+ src/FestoProcessAccess.h src/FestoProcessSensors.h \
+ src/FestoProcessActuators.h src/FestoProcessImage.h
+FestoMiniLab1008ProcessImage.o: src/FestoMiniLab1008ProcessImage.cpp \
+ src/FestoMiniLab1008ProcessImage.h src/FestoProcessImage.h
 AbstractPartChecker.o: src/AbstractPartChecker.cpp \
  src/AbstractPartChecker.h src/Plugin.h src/Part.h src/Measurement.h \
  src/FestoProcessSensors.h
 FSM.o: src/FSM.cpp src/FSM.h src/FestoProcessAccess.h \
  src/FestoProcessSensors.h src/FestoProcessActuators.h \
  src/FestoProcessImage.h src/Plugin.h
-FSMFactory.o: src/FSMFactory.cpp src/FestoProcessAccess.h \
- src/FestoProcessSensors.h src/FestoProcessActuators.h \
- src/FestoProcessImage.h src/FSMFactory.h src/FSM.h src/Plugin.h \
- src/FestoMiniLab1008ProcessImage.h
-FestoMiniLab1008ProcessImage.o: src/FestoMiniLab1008ProcessImage.cpp \
- src/FestoMiniLab1008ProcessImage.h src/FestoProcessImage.h
-FestoProcessAccess.o: src/FestoProcessAccess.cpp src/iomasks.h \
- src/FestoProcessAccess.h src/FestoProcessSensors.h \
- src/FestoProcessActuators.h src/FestoProcessImage.h
-Measurement.o: src/Measurement.cpp src/Measurement.h
 Part.o: src/Part.cpp src/Part.h src/Measurement.h
-main.o: src/main.cpp src/FSMFactory.h src/FSM.h src/FestoProcessAccess.h \
- src/FestoProcessSensors.h src/FestoProcessActuators.h \
- src/FestoProcessImage.h src/Plugin.h src/Part.h src/Measurement.h
 test_base.o: test/test_base.cpp test/test_base.h
 test_main.o: test/test_main.cpp test/test_base.h test/measurement.test \
- src/Measurement.h
+ src/Measurement.h test/legopartchecker.test src/LegoPartChecker.h \
+ src/AbstractPartChecker.h src/Plugin.h src/Part.h src/Measurement.h \
+ src/FestoProcessSensors.h

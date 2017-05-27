@@ -1,0 +1,29 @@
+/* *******************************************************************
+ * Lego Part Checker
+ * ***************************************************************** */
+#include "test_base.h"
+#include "src/LegoPartChecker.h"
+#include <chrono>
+
+bool testCheckPart() {
+    using namespace std::chrono;
+
+    INIT_TEST
+    const auto TS = system_clock::now();
+    const Part WRONG_COUNT = { { 10, TS }, { 20, TS + 10ms }, { 30, TS
+            + 20ms }, { 10, TS + 35ms }};
+    const Part OVER_DELTA_T = { { 10, TS }, { 20, TS + 10ms }, { 30, TS
+            + 20ms }, { 10, TS + 24ms }, { 0, TS + 50ms } };
+    const Part OVER_DELTA_H = { { 10, TS }, { 20, TS + 10ms }, { 41, TS
+            + 20ms }, { 10, TS + 35ms }, { 0, TS + 50ms } };
+    const Part CORRECT = { { 10, TS }, { 20, TS + 10ms }, { 30, TS
+            + 20ms }, { 10, TS + 35ms }, { 0, TS + 50ms } };
+
+    LegoPartChecker lpc(nullptr);
+
+    ASSERT_FALSE("Expected count mismatch!", lpc.checkPart(&WRONG_COUNT));
+    ASSERT_FALSE("Expected time mismatch!", lpc.checkPart(&OVER_DELTA_T));
+    ASSERT_FALSE("Expected value mismatch!", lpc.checkPart(&OVER_DELTA_H));
+    ASSERT_TRUE("Those really should have been equal!", lpc.checkPart(&CORRECT));
+    END_TEST
+}

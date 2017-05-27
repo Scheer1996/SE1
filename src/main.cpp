@@ -8,7 +8,7 @@
 #include <iostream>
 #include "FSMFactory.h"
 
-#include "Part.h"
+#include "LegoPartChecker.h"
 
 using namespace std;
 
@@ -40,12 +40,19 @@ int main(int argc, char** argv) {
     std::cout << p << std::endl;
 
     using namespace std::chrono;
-    p.addMeasurement({10, system_clock::now() + 300ms});
+    p.addMeasurement( { 10, system_clock::now() + 300ms });
     std::cout << p << std::endl;
 
     Timestamp ts = system_clock::now();
-    Part p2 = {{10, ts}, {20, ts + 10ms}, {30, ts + 20ms}};
+    Part p2 = { { 10, ts }, { 20, ts + 10ms }, { 30, ts + 20ms } };
     std::cout << p2 << std::endl;
+
+    Part pCorrect = { { 10, ts }, { 20, ts + 10ms }, { 30, ts + 20ms }, { 10, ts
+            + 35ms }, { 0, ts + 50ms } };
+
+    LegoPartChecker lpc(nullptr);
+    std::cout << lpc.checkPart(&p) << ", " << lpc.checkPart(&p2) << ", "
+            << lpc.checkPart(&pCorrect) << std::endl;
 #endif
     return 0;
 }
