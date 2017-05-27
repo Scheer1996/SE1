@@ -42,6 +42,10 @@ int main(int argc, char** argv) {
     using namespace std::chrono;
     p.addMeasurement({10, system_clock::now() + 300ms});
     std::cout << p << std::endl;
+
+    Timestamp ts = system_clock::now();
+    Part p2 = {{10, ts}, {20, ts + 10ms}, {30, ts + 20ms}};
+    std::cout << p2 << std::endl;
 #endif
     return 0;
 }

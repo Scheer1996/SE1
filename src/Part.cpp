@@ -10,6 +10,14 @@
 #include <exception>
 
 /**
+ * Constructs a part with an initializer list to pass to the internal std::vector
+ *
+ * @param il the initializer list
+ */
+Part::Part(std::initializer_list<Measurement> il) : measurements(il){
+}
+
+/**
  * Add a Measurement to the Part.
  *
  * @param m the Measurement to add

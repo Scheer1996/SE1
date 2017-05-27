@@ -7,6 +7,7 @@
 #define PART_H
 
 #include <vector>
+#include <initializer_list>
 #include "Measurement.h"
 
 /**
@@ -20,6 +21,8 @@ class Part {
 private:
     std::vector<Measurement> measurements; ///< container for the Measurements
 public:
+    Part() = default;
+    Part(std::initializer_list<Measurement> il);
     void addMeasurement(Measurement& m);
     void addMeasurement(Measurement&& m);
     const std::vector<Measurement>& getMeasurements() const;
