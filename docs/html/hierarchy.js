@@ -13,5 +13,9 @@ var hierarchy =
     [ "FSMFactory", "classFSMFactory.html", null ],
     [ "Measurement", "classMeasurement.html", null ],
     [ "Part", "classPart.html", null ],
-    [ "Plugin", "classPlugin.html", null ]
+    [ "Plugin", "classPlugin.html", [
+      [ "AbstractPartChecker", "classAbstractPartChecker.html", [
+        [ "LegoPartChecker", "classLegoPartChecker.html", null ]
+      ] ]
+    ] ]
 ];

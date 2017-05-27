@@ -25,7 +25,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"FSMFactory_8cpp.html"
+"AbstractPartChecker_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

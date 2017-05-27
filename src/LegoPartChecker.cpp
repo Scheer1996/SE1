@@ -22,10 +22,18 @@ static constexpr int ALLOWED_DELTA_T = 10; //ms
  */
 static constexpr int ALLOWED_DELTA_H = 10; //height sensor units
 
+/**
+ * Constructs a LegoPartChecker.
+ *
+ * @param sensors pointer to the hardware (used in superclass)
+ */
 LegoPartChecker::LegoPartChecker(FestoProcessSensors* sensors) :
         AbstractPartChecker(sensors) {
 }
 
+/*
+ * @see AbstracPartChecker::checkPart
+ */
 bool LegoPartChecker::checkPart(const Part* part) {
     if (part->getMeasurements().size()
             != REFERENCE_PART.getMeasurements().size()) {

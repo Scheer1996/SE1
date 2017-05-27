@@ -9,7 +9,7 @@ var classFestoProcessAccess =
     [ "driveSlowLeft", "classFestoProcessAccess.html#a174c0a105356da8476d4830a7bf661ae", null ],
     [ "driveSlowRight", "classFestoProcessAccess.html#aeb77c816f8b74e857567529c00bf5418", null ],
     [ "driveStop", "classFestoProcessAccess.html#ad26f4ee16e7a8896bdc62fca9898c49f", null ],
-    [ "getHight", "classFestoProcessAccess.html#a4afd2cd0259fa26416fbf9b9c42dc50d", null ],
+    [ "getHeight", "classFestoProcessAccess.html#a1b247619d6382aa9d9b3275c84c789f9", null ],
     [ "hasItemPassedSlide", "classFestoProcessAccess.html#a964a81256e5fcae639857e6974b34f47", null ],
     [ "isButtonEmergencyActive", "classFestoProcessAccess.html#a786b607d872cee0bf55ed95e2f0f5146", null ],
     [ "isButtonResetPressed", "classFestoProcessAccess.html#a1dcec9c74e731f17d5d8bbd0f5218d16", null ],

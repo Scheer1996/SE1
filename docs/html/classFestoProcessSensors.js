@@ -1,7 +1,7 @@
 var classFestoProcessSensors =
 [
     [ "~FestoProcessSensors", "classFestoProcessSensors.html#a7003de5dfc69c34ec8aded2fab912642", null ],
-    [ "getHight", "classFestoProcessSensors.html#aeb9d7cae5dadffdc50db564f5095d76e", null ],
+    [ "getHeight", "classFestoProcessSensors.html#af7a592c7bd17b4b9bc06d51daade30fa", null ],
     [ "hasItemPassedSlide", "classFestoProcessSensors.html#a9dfd20f1c3f0d2c3a2745b01c65345b7", null ],
     [ "isButtonEmergencyActive", "classFestoProcessSensors.html#adabbee18ab9734b0f87777969408baaf", null ],
     [ "isButtonResetPressed", "classFestoProcessSensors.html#ae93a1004bb303ee4a037612c1acee01f", null ],
