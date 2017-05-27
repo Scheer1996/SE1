@@ -20,20 +20,20 @@ FestoProcessAccess::FestoProcessAccess(FestoProcessImage* processImage) {
 #ifdef LOG_PROCESS
     logFile = fopen("c:\\tmp\\processlog.txt","w");
 #else
-    logFile = NULL;
+    logFile = nullptr;
 #endif
 
 }
 
 FestoProcessAccess::~FestoProcessAccess() {
     delete process;
-    if(logFile!=NULL){
+    if(logFile){
         fclose(logFile);
     }
 }
 
 void FestoProcessAccess::updateInputs(void) {
-    timeCounter = time(NULL);
+    timeCounter = time(nullptr);
     process->updateProcessImage();
     logProcessData();
 }
@@ -200,5 +200,5 @@ unsigned short FestoProcessAccess::getHeight(){
 }
 
 time_t FestoProcessAccess::timeCounter1s(){
-    return time(NULL);
+    return time(nullptr);
 }

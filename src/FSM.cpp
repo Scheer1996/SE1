@@ -23,7 +23,7 @@ FSM::~FSM() {
 
 void FSM::eval() {
     process->updateInputs();
-    if (plugin != NULL) {
+    if (plugin) {
         plugin->evalCycle();
     }
     evalEvents();

@@ -16,7 +16,7 @@ using namespace std;
  * 
  */
 int main(int argc, char** argv) {
-#if 0
+#if 1
     bool run = true; // set this variable to false whilst debugging to end program.
     FSMFactory factory;
 

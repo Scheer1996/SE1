@@ -10,14 +10,21 @@
 
 #include "FestoProcessAccess.h"
 #include "FSMFactory.h"
+#include "LegoPartChecker.h"
 
 #include "FestoMiniLab1008ProcessImage.h"
+#include "DebugProcessImage.h"
 
 FSM* FSMFactory::createFSM(){
        // Create Objects
-    FestoProcessImage* processImage = new FestoMiniLab1008ProcessImage();
+    FestoProcessImage* processImage;
+#ifndef SIL
+    processImage = new FestoMiniLab1008ProcessImage();
+#else
+    processImage = new DebugProcessImage();
+#endif
     FestoProcessAccess* processAccess = new FestoProcessAccess(processImage);
-    //Plugin* plugin = new ...
-    FSM* fsm = new FSM(processAccess, NULL);
+    Plugin* plugin = new LegoPartChecker(processAccess);
+    FSM* fsm = new FSM(processAccess, plugin);
     return fsm;
 }
