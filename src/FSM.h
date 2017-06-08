@@ -30,6 +30,7 @@ private:
 private:
     void blinkGreen();
     void blinkRed();
+    void blinkYellow();
 };
 
 #endif	/* FSM_H */
