@@ -12,10 +12,12 @@
 #define	FSM_H
 #include "FestoProcessAccess.h"
 #include "Plugin.h"
+#include "test/FSMTest.h"
 
 enum class FSMStates { START, STANDBY, READY, TRANSPORT, HEIGHT_MEASURE, PART_OK, PART_BAD, START_REACHED, ERROR, END_REACHED};
 
 class FSM {
+    friend class FSMTest;
 private:
     FSMStates currentState;
     FestoProcessAccess *process;
