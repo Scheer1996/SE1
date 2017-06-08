@@ -24,7 +24,7 @@ void DebugProcessImage::updateProcessImage() {
     processImage = processImageNew;
     heightAnalogueValue = heightSensorNew;
 
-    printFancy();
+    //printFancy();
 }
 
 void DebugProcessImage::applyOutputToProcess() {
