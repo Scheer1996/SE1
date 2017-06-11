@@ -1,7 +1,11 @@
 var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
-    [ "AbstractPartChecker.cpp", "AbstractPartChecker_8cpp.html", null ],
+    [ "AbstractPartChecker.cpp", "AbstractPartChecker_8cpp.html", "AbstractPartChecker_8cpp" ],
     [ "AbstractPartChecker.h", "AbstractPartChecker_8h.html", "AbstractPartChecker_8h" ],
+    [ "DebugProcessImage.cpp", "DebugProcessImage_8cpp.html", "DebugProcessImage_8cpp" ],
+    [ "DebugProcessImage.h", "DebugProcessImage_8h.html", [
+      [ "DebugProcessImage", "classDebugProcessImage.html", "classDebugProcessImage" ]
+    ] ],
     [ "FestoMiniLab1008ProcessImage.cpp", "FestoMiniLab1008ProcessImage_8cpp.html", null ],
     [ "FestoMiniLab1008ProcessImage.h", "FestoMiniLab1008ProcessImage_8h.html", "FestoMiniLab1008ProcessImage_8h" ],
     [ "FestoProcessAccess.cpp", "FestoProcessAccess_8cpp.html", null ],
@@ -22,7 +26,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
       [ "FSMFactory", "classFSMFactory.html", "classFSMFactory" ]
     ] ],
     [ "iomasks.h", "iomasks_8h.html", "iomasks_8h" ],
-    [ "LegoPartChecker.cpp", "LegoPartChecker_8cpp.html", null ],
+    [ "LegoPartChecker.cpp", "LegoPartChecker_8cpp.html", "LegoPartChecker_8cpp" ],
     [ "LegoPartChecker.h", "LegoPartChecker_8h.html", [
       [ "LegoPartChecker", "classLegoPartChecker.html", "classLegoPartChecker" ]
     ] ],

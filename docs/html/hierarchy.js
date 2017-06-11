@@ -4,6 +4,7 @@ var hierarchy =
       [ "FestoProcessAccess", "classFestoProcessAccess.html", null ]
     ] ],
     [ "FestoProcessImage", "classFestoProcessImage.html", [
+      [ "DebugProcessImage", "classDebugProcessImage.html", null ],
       [ "FestoMiniLab1008ProcessImage", "classFestoMiniLab1008ProcessImage.html", null ]
     ] ],
     [ "FestoProcessSensors", "classFestoProcessSensors.html", [

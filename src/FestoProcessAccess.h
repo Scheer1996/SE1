@@ -7,7 +7,7 @@
  * \author   Prof. Dr. Thomas Lehmann
  * \version  2
  * \date     2013-11-01
- * \modified 2015-05-10
+ * \date     modified: 2015-05-10
  */
 
 #ifndef FESTO_PROCESS_ACCESS_H

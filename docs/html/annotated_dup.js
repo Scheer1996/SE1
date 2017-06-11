@@ -1,6 +1,7 @@
 var annotated_dup =
 [
     [ "AbstractPartChecker", "classAbstractPartChecker.html", "classAbstractPartChecker" ],
+    [ "DebugProcessImage", "classDebugProcessImage.html", "classDebugProcessImage" ],
     [ "FestoMiniLab1008ProcessImage", "classFestoMiniLab1008ProcessImage.html", "classFestoMiniLab1008ProcessImage" ],
     [ "FestoProcessAccess", "classFestoProcessAccess.html", "classFestoProcessAccess" ],
     [ "FestoProcessActuators", "classFestoProcessActuators.html", "classFestoProcessActuators" ],

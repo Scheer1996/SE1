@@ -24,6 +24,7 @@ var classFestoProcessAccess =
     [ "isItemAtSlide", "classFestoProcessAccess.html#a8c8322b9b747bc916b2a51aeab4584a8", null ],
     [ "isJunctionOpen", "classFestoProcessAccess.html#a595604518983251189a141a07bd922fe", null ],
     [ "isMetalDetected", "classFestoProcessAccess.html#aaab9fa1e3d42af8e61b715e725f7e212", null ],
+    [ "logProcessData", "classFestoProcessAccess.html#a78c6b98cafbd7596b7e394b46101442d", null ],
     [ "openJunction", "classFestoProcessAccess.html#a0fb057a87868e3d9d1746a3541206f23", null ],
     [ "timeCounter1s", "classFestoProcessAccess.html#ae4be0d5b276355037160dfa15266e816", null ],
     [ "turnAllOff", "classFestoProcessAccess.html#a5e2c79af79880aea98bcca2dd9def32d", null ],
@@ -41,5 +42,8 @@ var classFestoProcessAccess =
     [ "turnLightRedOn", "classFestoProcessAccess.html#a69874a56bebf617873ee36441f1a95d7", null ],
     [ "turnLightYellowOff", "classFestoProcessAccess.html#accc93570a57e43e6956235756ccefeb3", null ],
     [ "turnLightYellowOn", "classFestoProcessAccess.html#abac913896e12c0bd8545ff187e0c4feb", null ],
-    [ "updateInputs", "classFestoProcessAccess.html#ae2e05952afba2ba2935675c7907a806f", null ]
+    [ "updateInputs", "classFestoProcessAccess.html#ae2e05952afba2ba2935675c7907a806f", null ],
+    [ "logFile", "classFestoProcessAccess.html#a5943e2bf15ba4a1d6c9c614572024a05", null ],
+    [ "process", "classFestoProcessAccess.html#a2c349d5b9e069d94425641c94033974a", null ],
+    [ "timeCounter", "classFestoProcessAccess.html#a74c7767ffd1674aa8b8c5bbbd320c0d7", null ]
 ];

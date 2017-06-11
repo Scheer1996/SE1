@@ -17,19 +17,19 @@
  */
 class DebugProcessImage: public FestoProcessImage {
 private:
-    unsigned short processImage;
-    unsigned short processImageChange;
-    unsigned short outputImage;
-    unsigned short heightAnalogueValue;
+    unsigned short processImage; ///< input buffer with current values
+    unsigned short processImageChange; ///< indicates which bits have changed
+    unsigned short outputImage; ///< output buffer
+    unsigned short heightAnalogueValue; ///< height sensor value
 
     //setting inputs for test
-    unsigned short processImageNew;
-    unsigned short heightSensorNew;
+    unsigned short processImageNew; ///< buffer for upcoming input
+    unsigned short heightSensorNew; ///< buffer for upcoming height values
 
     // fancy printing
-    unsigned short previousInput;
-    unsigned short previousOutput;
-    unsigned short previousHeight;
+    unsigned short previousInput; ///< input state when it was last printed
+    unsigned short previousOutput; ///< output state when it was last printed
+    unsigned short previousHeight; ///< height state when it was last printed
 
 // implement FestoProcessImage
 public:
