@@ -10,7 +10,7 @@
 #include "Part.h"
 #include "FestoProcessSensors.h"
 
-enum class PartCheckerState {IDLE, START_MEASURE, MEASURE, END_MEASURE};
+enum class PartCheckerState {IDLE, MEASURE, END_MEASURE};
 
 /**
  * Abstract base class for evaluating height measurements

@@ -299,6 +299,14 @@ void DebugProcessImage::printOutputFancy() {
     }
     cout << endl;
 
+    cout << "Junction: ";
+    if(isBitSet(outputImage, JUNCTION_OPEN)){
+        cout << "Open (Item can pass)";
+    } else {
+        cout << "Closed (Sending to slide)";
+    }
+    cout << endl;
+
     cout << "Lights: ";
     std::string delim = "";
     if (isBitSet(outputImage, TRAFIC_LIGHT_RED)) {

@@ -12,7 +12,7 @@
  *
  * meant to counteract noise.
  */
-static constexpr int ALLOWED_HEIGHT_DEVIATION = 10;
+static constexpr int ALLOWED_HEIGHT_DEVIATION = 9;
 
 /**
  * height measurement of the belt (with no part on it)
@@ -46,17 +46,14 @@ void AbstractPartChecker::evalCycle() {
         case PartCheckerState::IDLE:
             if (std::abs(sensors->getHeight() - BELT_HEIGHT)
                     > ALLOWED_HEIGHT_DEVIATION) {
-                state = PartCheckerState::START_MEASURE;
+                if (currentPart) {
+                    delete currentPart;
+                }
+                currentPart = new Part();
+                lastHeight = sensors->getHeight();
+                currentPart->addMeasurement( { lastHeight });
+                state = PartCheckerState::MEASURE;
             }
-            break;
-        case PartCheckerState::START_MEASURE:
-            if (currentPart) {
-                delete currentPart;
-            }
-            currentPart = new Part();
-            lastHeight = sensors->getHeight();
-            currentPart->addMeasurement( { lastHeight });
-            state = PartCheckerState::MEASURE;
             break;
         case PartCheckerState::MEASURE: { // these need to be here, because of
                                           // the local variable currentHeight

@@ -40,6 +40,7 @@ compile_test: $(TEST_OBJ)
 clean:
 	rm -rf $(OBJ)
 	rm -rf $(TEST_OBJ)
+	rm output.log
 	rm -rf *.out
 
 deps:

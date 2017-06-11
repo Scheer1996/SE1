@@ -10,10 +10,63 @@
 
 #include "FSM.h"
 
+#define PRINT_STATE true
+
+#if PRINT_STATE
+#define LOGSTATE logState(currentState);
+#include <iostream>
+/**
+ * Print the
+ * @param state
+ */
+void logState(FSMStates state) {
+    using std::cout;
+    using std::endl;
+
+    cout << "========================================" << endl;
+    switch (state) {
+        case FSMStates::START:
+            cout << "START" << endl;
+            break;
+        case FSMStates::STANDBY:
+            cout << "STANDBY" << endl;
+            break;
+        case FSMStates::READY:
+            cout << "READY" << endl;
+            break;
+        case FSMStates::TRANSPORT:
+            cout << "TRANSPORT" << endl;
+            break;
+        case FSMStates::HEIGHT_MEASURE:
+            cout << "HEIGHT_MEASURE" << endl;
+            break;
+        case FSMStates::PART_OK:
+            cout << "PART_OK" << endl;
+            break;
+        case FSMStates::END_REACHED:
+            cout << "END_REACHED" << endl;
+            break;
+        case FSMStates::PART_BAD:
+            cout << "PART_BAD" << endl;
+            break;
+        case FSMStates::START_REACHED:
+            cout << "START_REACHED" << endl;
+            break;
+        case FSMStates::ERROR:
+            cout << "ERROR" << endl;
+            break;
+    }
+}
+#else
+#define LOGSTATE
+#endif
+
 FSM::FSM(FestoProcessAccess *process, Plugin* plugin = 0) {
     this->process = process;
     currentState = FSMStates::START;
     this->plugin = plugin;
+    LOGSTATE
+    ;
 }
 
 FSM::~FSM() {
@@ -28,6 +81,8 @@ void FSM::eval() {
     }
     evalEvents();
     evalState();
+    LOGSTATE
+    ;
     process->applyOutput();
 }
 
@@ -48,7 +103,8 @@ void FSM::evalEvents() {
             if (process->isItemAtBeginning() && !process->isItemAtEnd()) {
                 currentState = FSMStates::TRANSPORT;
             }
-            if (process->isItemAtHeightSensor() || process->isItemAtMetalDetector()) {
+            if (process->isItemAtHeightSensor()
+                    || process->isItemAtMetalDetector()) {
                 currentState = FSMStates::ERROR;
             }
             break;
@@ -61,21 +117,23 @@ void FSM::evalEvents() {
             }
             break;
         case FSMStates::HEIGHT_MEASURE:
-            if (!process->isItemAtHeightSensor() && !plugin->result()) {
-            	currentState = FSMStates::PART_BAD;
-            } else if (!process->isItemAtHeightSensor() && plugin->result()) {
-            	currentState = FSMStates::PART_OK;
+            if (!process->isItemAtHeightSensor()) {
+                if (plugin->result()) {
+                    currentState = FSMStates::PART_OK;
+                } else {
+                    currentState = FSMStates::PART_BAD;
+                }
             }
-
             if (process->isItemAtEnd() || process->isItemAtMetalDetector()) {
                 currentState = FSMStates::ERROR;
             }
             break;
         case FSMStates::PART_OK:
             if (process->isItemAtEnd()) {
-            	currentState = FSMStates::END_REACHED;
+                currentState = FSMStates::END_REACHED;
             }
-            if (process->isItemAtBeginning() || process->isItemAtHeightSensor()) {
+            if (process->isItemAtBeginning()
+                    || process->isItemAtHeightSensor()) {
                 currentState = FSMStates::ERROR;
             }
             break;
@@ -86,14 +144,15 @@ void FSM::evalEvents() {
             if (!(process->isItemAtEnd())) {
                 currentState = FSMStates::READY;
             }
-            if (process->isItemAtMetalDetector() || process->isItemAtHeightSensor()) {
+            if (process->isItemAtMetalDetector()
+                    || process->isItemAtHeightSensor()) {
                 currentState = FSMStates::ERROR;
             }
             break;
         case FSMStates::PART_BAD:
             if (process->isItemAtBeginning()) {
-            	currentState = FSMStates::START_REACHED;
-				plugin->result(); // reset measuring substate machine
+                currentState = FSMStates::START_REACHED;
+                plugin->result(); // reset measuring substate machine
             }
             if (process->isItemAtEnd() || process->isItemAtMetalDetector()) {
                 currentState = FSMStates::ERROR;
@@ -106,7 +165,8 @@ void FSM::evalEvents() {
             if (!process->isItemAtBeginning()) {
                 currentState = FSMStates::READY;
             }
-            if (process->isItemAtEnd() || process->isItemAtHeightSensor() || process->isItemAtMetalDetector()) {
+            if (process->isItemAtEnd() || process->isItemAtHeightSensor()
+                    || process->isItemAtMetalDetector()) {
                 currentState = FSMStates::ERROR;
             }
             break;
@@ -121,85 +181,85 @@ void FSM::evalEvents() {
 }
 
 void FSM::evalState() {
-	if (process->isButtonEmergencyActive()) {
-		process->driveStop();
-		process->turnLightGreenOff();
-		process->turnLightYellowOff();
-		process->closeJunction();
-		blinkRed();
-	} else {
-		switch (currentState) {
-			case FSMStates::START:
-			case FSMStates::STANDBY:
-				process->driveStop();
-				process->turnLightGreenOff();
-				process->turnLightRedOff();
-				process->turnLightYellowOff();
-				process->turnLEDQ1Off();
-				process->turnLEDQ2Off();
-				process->turnLEDResetOff();
-				process->turnLEDStartOn();
-				break;
-			case FSMStates::READY:
-				process->driveStop();
-				process->turnLightGreenOn();
-				process->turnLightRedOff();
-				process->turnLightYellowOff();
-				process->turnLEDStartOn();
-				break;
-			case FSMStates::TRANSPORT:
-				process->driveRight();
-				process->turnLightGreenOn();
-				process->turnLightRedOff();
-				process->turnLightYellowOff();
-				process->turnLEDStartOff();
-				break;
-			case FSMStates::HEIGHT_MEASURE:
-				process->driveSlowRight();
-				process->turnLightGreenOn();
-				process->turnLightRedOff();
-				process->turnLightYellowOff();
-				break;
-			case FSMStates::PART_OK:
-				process->driveRight();
-				process->turnLightGreenOn();
-				process->turnLightRedOff();
-				process->turnLightYellowOff();
-				process->turnLEDStartOff();
-				process->openJunction();
-				break;
-			case FSMStates::END_REACHED:
-				process->driveStop();
-				process->turnLightRedOff();
-				process->turnLightYellowOff();
-				process->closeJunction();
-				process->turnLEDStartOn();
-				blinkGreen();
-				break;
-			case FSMStates::PART_BAD:
-				process->driveLeft();
-				process->turnLightGreenOff();
-				process->turnLightRedOff();
-				process->turnLightYellowOn();
-				break;
-			case FSMStates::START_REACHED:
-				process->driveStop();
-				process->turnLightGreenOff();
-				process->turnLightRedOff();
-				process->turnLEDStartOn();
-				blinkYellow();
-				break;
-			case FSMStates::ERROR:
-				process->driveStop();
-				process->turnLightGreenOff();
-				process->turnLightYellowOff();
-				process->turnLEDStartOn();
-				process->closeJunction();
-				blinkRed();
-				break;
+    if (process->isButtonEmergencyActive()) {
+        process->driveStop();
+        process->turnLightGreenOff();
+        process->turnLightYellowOff();
+        process->closeJunction();
+        blinkRed();
+    } else {
+        switch (currentState) {
+            case FSMStates::START:
+            case FSMStates::STANDBY:
+                process->driveStop();
+                process->turnLightGreenOff();
+                process->turnLightRedOff();
+                process->turnLightYellowOff();
+                process->turnLEDQ1Off();
+                process->turnLEDQ2Off();
+                process->turnLEDResetOff();
+                process->turnLEDStartOn();
+                break;
+            case FSMStates::READY:
+                process->driveStop();
+                process->turnLightGreenOn();
+                process->turnLightRedOff();
+                process->turnLightYellowOff();
+                process->turnLEDStartOn();
+                break;
+            case FSMStates::TRANSPORT:
+                process->driveRight();
+                process->turnLightGreenOn();
+                process->turnLightRedOff();
+                process->turnLightYellowOff();
+                process->turnLEDStartOff();
+                break;
+            case FSMStates::HEIGHT_MEASURE:
+                process->driveSlowRight();
+                process->turnLightGreenOn();
+                process->turnLightRedOff();
+                process->turnLightYellowOff();
+                break;
+            case FSMStates::PART_OK:
+                process->driveRight();
+                process->turnLightGreenOn();
+                process->turnLightRedOff();
+                process->turnLightYellowOff();
+                process->turnLEDStartOff();
+                process->openJunction();
+                break;
+            case FSMStates::END_REACHED:
+                process->driveStop();
+                process->turnLightRedOff();
+                process->turnLightYellowOff();
+                process->closeJunction();
+                process->turnLEDStartOn();
+                blinkGreen();
+                break;
+            case FSMStates::PART_BAD:
+                process->driveLeft();
+                process->turnLightGreenOff();
+                process->turnLightRedOff();
+                process->turnLightYellowOn();
+                break;
+            case FSMStates::START_REACHED:
+                process->driveStop();
+                process->turnLightGreenOff();
+                process->turnLightRedOff();
+                process->turnLEDStartOn();
+                blinkYellow();
+                break;
+            case FSMStates::ERROR:
+                process->driveStop();
+                process->turnLightGreenOff();
+                process->turnLightYellowOff();
+                process->turnLEDStartOn();
+                process->closeJunction();
+                blinkRed();
+                break;
 
-		}
-	}
+        }
+    }
 }
 
 void FSM::blinkRed() {
