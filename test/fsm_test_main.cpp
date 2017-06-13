@@ -12,7 +12,7 @@
 
 using std::cout;
 using std::endl;
-using namespace std::chrono_literals;
+using namespace std::chrono;
 
 //TODO: docmentation
 static FSM *fsm;
@@ -76,7 +76,7 @@ int main() {
                     << endl;
         }
         cout << "Following paths have failed:" << endl;
-        cout << failedStr;
+        cout << failedStr << endl;
     } else {
         cout << GREEN << "All tests have passed! " << RESET << endl;
     }
@@ -244,19 +244,19 @@ void path5() {
     dpi->setHeight(10);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(10ms);
+    std::this_thread::sleep_for(milliseconds(10));
     dpi->setHeight(20);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(10ms);
+    std::this_thread::sleep_for(milliseconds(10));
     dpi->setHeight(30);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(15ms);
+    std::this_thread::sleep_for(milliseconds(15));
     dpi->setHeight(10);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(15ms);
+    std::this_thread::sleep_for(milliseconds(15));
     dpi->setHeight(0);
     fsm->eval(); // HeightMeasure
 
@@ -285,19 +285,19 @@ void path6() {
     dpi->setHeight(10);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(10ms);
+    std::this_thread::sleep_for(milliseconds(10));
     dpi->setHeight(20);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(10ms);
+    std::this_thread::sleep_for(milliseconds(10));
     dpi->setHeight(30);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(15ms);
+    std::this_thread::sleep_for(milliseconds(15));
     dpi->setHeight(10);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(15ms);
+    std::this_thread::sleep_for(milliseconds(15));
     dpi->setHeight(0);
     fsm->eval(); // HeightMeasure
 
@@ -383,19 +383,19 @@ void path10() {
     dpi->setHeight(10);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(10ms);
+    std::this_thread::sleep_for(milliseconds(10));
     dpi->setHeight(20);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(10ms);
+    std::this_thread::sleep_for(milliseconds(10));
     dpi->setHeight(30);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(15ms);
+    std::this_thread::sleep_for(milliseconds(15));
     dpi->setHeight(10);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(15ms);
+    std::this_thread::sleep_for(milliseconds(15));
     dpi->setHeight(0);
     fsm->eval(); // HeightMeasure
 
@@ -448,19 +448,19 @@ void path12() {
     dpi->setHeight(10);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(10ms);
+    std::this_thread::sleep_for(milliseconds(10));
     dpi->setHeight(20);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(10ms);
+    std::this_thread::sleep_for(milliseconds(10));
     dpi->setHeight(30);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(15ms);
+    std::this_thread::sleep_for(milliseconds(15));
     dpi->setHeight(10);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(15ms);
+    std::this_thread::sleep_for(milliseconds(15));
     dpi->setHeight(0);
     fsm->eval(); // HeightMeasure
 

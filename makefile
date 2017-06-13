@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++14 -g -Wall -Wfatal-errors -I.
+CXXFLAGS = -std=c++11 -g -Wall -Wfatal-errors -I.
 LDFLAGS = -g
 LDLIBS =
 
@@ -40,7 +40,7 @@ compile_test: $(TEST_OBJ)
 clean:
 	rm -rf $(OBJ)
 	rm -rf $(TEST_OBJ)
-	rm output.log
+	rm -rf output.log
 	rm -rf *.out
 
 deps:

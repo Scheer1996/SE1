@@ -10,14 +10,14 @@ bool testCheckPart() {
 
     INIT_TEST
     const auto TS = system_clock::now();
-    const Part WRONG_COUNT = { { 10, TS }, { 20, TS + 10ms }, { 30, TS
-            + 20ms }, { 10, TS + 35ms }};
-    const Part OVER_DELTA_T = { { 10, TS }, { 20, TS + 10ms }, { 30, TS
-            + 20ms }, { 10, TS + 24ms }, { 0, TS + 50ms } };
-    const Part OVER_DELTA_H = { { 10, TS }, { 20, TS + 10ms }, { 41, TS
-            + 20ms }, { 10, TS + 35ms }, { 0, TS + 50ms } };
-    const Part CORRECT = { { 10, TS }, { 20, TS + 10ms }, { 30, TS
-            + 20ms }, { 10, TS + 35ms }, { 0, TS + 50ms } };
+    const Part WRONG_COUNT = { { 10, TS }, { 20, TS + milliseconds(10) }, { 30, TS
+            + milliseconds(20) }, { 10, TS + milliseconds(35) }};
+    const Part OVER_DELTA_T = { { 10, TS }, { 20, TS + milliseconds(10) }, { 30, TS
+            + milliseconds(20) }, { 10, TS + milliseconds(24) }, { 0, TS + milliseconds(50) } };
+    const Part OVER_DELTA_H = { { 10, TS }, { 20, TS + milliseconds(10) }, { 41, TS
+            + milliseconds(20) }, { 10, TS + milliseconds(35) }, { 0, TS + milliseconds(50) } };
+    const Part CORRECT = { { 10, TS }, { 20, TS + milliseconds(10) }, { 30, TS
+            + milliseconds(20) }, { 10, TS + milliseconds(35) }, { 0, TS + milliseconds(50) } };
 
     LegoPartChecker lpc(nullptr);
 

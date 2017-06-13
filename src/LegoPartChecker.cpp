@@ -16,8 +16,8 @@ using std::endl;
 using namespace std::chrono;
 static const auto ts = system_clock::now();
 
-const Part LegoPartChecker::REFERENCE_PART = { { 10, ts }, { 20, ts + 10ms }, {
-        30, ts + 20ms }, { 10, ts + 35ms }, { 0, ts + 50ms } };
+const Part LegoPartChecker::REFERENCE_PART = { { 10, ts }, { 20, ts + milliseconds(10) }, {
+        30, ts + milliseconds(20) }, { 10, ts + milliseconds(35) }, { 0, ts + milliseconds(50) } };
 
 /**
  * Time jitter allowed to still accept the Part
