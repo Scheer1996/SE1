@@ -3,6 +3,7 @@
  ******************************************************************
  */
 
+#include <cmath>
 #include "LegoPartChecker.h"
 
 #define PRINT_DEBUG
@@ -16,18 +17,18 @@ using std::endl;
 using namespace std::chrono;
 static const auto ts = system_clock::now();
 
-const Part LegoPartChecker::REFERENCE_PART = { { 10, ts }, { 20, ts + milliseconds(10) }, {
-        30, ts + milliseconds(20) }, { 10, ts + milliseconds(35) }, { 0, ts + milliseconds(50) } };
+const Part LegoPartChecker::REFERENCE_PART = { { 3414, ts }, { 3720, ts + milliseconds(432) }, {
+        3418, ts + milliseconds(888) }, { 3114, ts + milliseconds(1368) }, { 3780, ts + milliseconds(1824) } };
 
 /**
  * Time jitter allowed to still accept the Part
  */
-static constexpr int ALLOWED_DELTA_T = 10; //ms
+static constexpr int ALLOWED_DELTA_T = 100; //ms
 
 /**
  * Height jitter allowed to still accept the Part
  */
-static constexpr int ALLOWED_DELTA_H = 10; //height sensor units
+static constexpr int ALLOWED_DELTA_H = 30; //height sensor units
 
 /**
  * Constructs a LegoPartChecker.

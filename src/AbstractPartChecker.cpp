@@ -12,12 +12,12 @@
  *
  * meant to counteract noise.
  */
-static constexpr int ALLOWED_HEIGHT_DEVIATION = 9;
+static constexpr int ALLOWED_HEIGHT_DEVIATION = 29;
 
 /**
  * height measurement of the belt (with no part on it)
  */
-static constexpr int BELT_HEIGHT = 0;
+static constexpr int BELT_HEIGHT = 3780;
 
 /**
  * Constructs an AbstractPartChecker

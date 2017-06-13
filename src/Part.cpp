@@ -67,7 +67,8 @@ bool Part::hasMeasurements() const {
  */
 int Part::getOffsetInMS(const Measurement& m) const {
     if(!hasMeasurements()){
-        throw std::runtime_error("No measurement to compare to!");
+        //throw std::runtime_error("No measurement to compare to!"); TODO: add again
+        throw std::exception();
     }
 
     using namespace std::chrono;
@@ -92,7 +93,7 @@ std::ostream& operator <<(std::ostream& os, const Part& p) {
         // print timestamp of when the part was measured
         using namespace std::chrono;
         std::time_t tm = system_clock::to_time_t(tsFirst);
-        os << std::put_time(std::localtime(&tm), "%H:%M:%S");
+        //os << std::put_time(std::localtime(&tm), "%H:%M:%S"); TODO: add again
 
         for (auto&& m : p.getMeasurements()) {
             // calculate offset from first in ms

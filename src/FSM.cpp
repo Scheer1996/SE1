@@ -9,6 +9,7 @@
  */
 
 #include "FSM.h"
+#include <cmath>
 
 #define PRINT_STATE true
 
@@ -23,6 +24,12 @@ void logState(FSMStates state) {
     using std::cout;
     using std::endl;
 
+	static FSMStates lastState = FSMStates::ERROR;
+	if(state == lastState){
+		return;
+	}
+	lastState = state;
+	
     cout << "========================================" << endl;
     switch (state) {
         case FSMStates::START:
@@ -86,6 +93,18 @@ void FSM::eval() {
     process->applyOutput();
 }
 
+/**
+ * threshold for considering two measurements as different.
+ *
+ * meant to counteract noise.
+ */
+static constexpr int ALLOWED_HEIGHT_DEVIATION = 29;
+
+/**
+ * height measurement of the belt (with no part on it)
+ */
+static constexpr int BELT_HEIGHT = 3780;
+
 void FSM::evalEvents() {
     switch (currentState) {
         case FSMStates::START:
@@ -109,7 +128,8 @@ void FSM::evalEvents() {
             }
             break;
         case FSMStates::TRANSPORT:
-            if (process->isItemAtHeightSensor()) {
+            //if (process->isItemAtHeightSensor()) {
+            if (std::abs(process->getHeight() - BELT_HEIGHT) > ALLOWED_HEIGHT_DEVIATION) {
                 currentState = FSMStates::HEIGHT_MEASURE;
             }
             if (process->isItemAtEnd() || process->isItemAtMetalDetector()) {
@@ -117,7 +137,8 @@ void FSM::evalEvents() {
             }
             break;
         case FSMStates::HEIGHT_MEASURE:
-            if (!process->isItemAtHeightSensor()) {
+            //if (!process->isItemAtHeightSensor()) {
+            if (std::abs(process->getHeight() - BELT_HEIGHT) < ALLOWED_HEIGHT_DEVIATION) {
                 if (plugin->result()) {
                     currentState = FSMStates::PART_OK;
                 } else {
@@ -132,8 +153,7 @@ void FSM::evalEvents() {
             if (process->isItemAtEnd()) {
                 currentState = FSMStates::END_REACHED;
             }
-            if (process->isItemAtBeginning()
-                    || process->isItemAtHeightSensor()) {
+            if (process->isItemAtBeginning()) {
                 currentState = FSMStates::ERROR;
             }
             break;
@@ -208,7 +228,7 @@ void FSM::evalState() {
                 process->turnLEDStartOn();
                 break;
             case FSMStates::TRANSPORT:
-                process->driveRight();
+                process->driveSlowRight();
                 process->turnLightGreenOn();
                 process->turnLightRedOff();
                 process->turnLightYellowOff();
@@ -221,6 +241,7 @@ void FSM::evalState() {
                 process->turnLightYellowOff();
                 break;
             case FSMStates::PART_OK:
+				process->driveStop();
                 process->driveRight();
                 process->turnLightGreenOn();
                 process->turnLightRedOff();
@@ -237,6 +258,7 @@ void FSM::evalState() {
                 blinkGreen();
                 break;
             case FSMStates::PART_BAD:
+                process->driveStop();
                 process->driveLeft();
                 process->turnLightGreenOff();
                 process->turnLightRedOff();

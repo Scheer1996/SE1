@@ -14,7 +14,7 @@
 
 #include "FestoProcessImage.h"
 // if SIL is defined, no hardware interface is accessed or compiled in.
-#define SIL
+//#define SIL
 
 class FestoMiniLab1008ProcessImage : public FestoProcessImage {
 private:

@@ -1,7 +1,7 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -g -Wall -Wfatal-errors -I.
+CXXFLAGS = -std=c++11 -g -Wall -Wfatal-errors -I. -IC:\Festo\lib
 LDFLAGS = -g
-LDLIBS =
+LDLIBS = -LC:\Festo\lib -lcbw32
 
 SRC = $(wildcard src/*.cpp)
 OBJ = $(SRC:%.cpp=%.o)
