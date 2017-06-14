@@ -60,6 +60,7 @@ $(document).ready(function(){initNavTree('LegoPartChecker_8cpp.html','');});
 <div id="doc-content">
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">LegoPartChecker.cpp File Reference</div>  </div>
@@ -69,22 +70,47 @@ $(document).ready(function(){initNavTree('LegoPartChecker_8cpp.html','');});
 <p><hr/>
   
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="LegoPartChecker_8h.html">LegoPartChecker.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;cmath&gt;</code><br />
+<code>#include &quot;<a class="el" href="LegoPartChecker_8h.html">LegoPartChecker.h</a>&quot;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ac3118bc144fa7b17c1410b6eb11b1395"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LegoPartChecker_8cpp.html#ac3118bc144fa7b17c1410b6eb11b1395">PRINT_DEBUG</a>&#160;&#160;&#160;true</td></tr>
+<tr class="memdesc:ac3118bc144fa7b17c1410b6eb11b1395"><td class="mdescLeft">&#160;</td><td class="mdescRight">should debug information be printed?  <a href="#ac3118bc144fa7b17c1410b6eb11b1395">More...</a><br /></td></tr>
+<tr class="separator:ac3118bc144fa7b17c1410b6eb11b1395"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:afa9f1cb628f6e42d82d5f087cb6780aa"><td class="memItemLeft" align="right" valign="top">static const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LegoPartChecker_8cpp.html#afa9f1cb628f6e42d82d5f087cb6780aa">ts</a> = system_clock::now()</td></tr>
+<tr class="memdesc:afa9f1cb628f6e42d82d5f087cb6780aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">current time as reference starting time for the part  <a href="#afa9f1cb628f6e42d82d5f087cb6780aa">More...</a><br /></td></tr>
 <tr class="separator:afa9f1cb628f6e42d82d5f087cb6780aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e72279dc608fa62ef7f04b1055cd915"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LegoPartChecker_8cpp.html#a4e72279dc608fa62ef7f04b1055cd915">ALLOWED_DELTA_T</a> = 10</td></tr>
+<tr class="memitem:a4e72279dc608fa62ef7f04b1055cd915"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LegoPartChecker_8cpp.html#a4e72279dc608fa62ef7f04b1055cd915">ALLOWED_DELTA_T</a> = 100</td></tr>
 <tr class="memdesc:a4e72279dc608fa62ef7f04b1055cd915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time jitter allowed to still accept the <a class="el" href="classPart.html" title="Storage class for a Part. ">Part</a>.  <a href="#a4e72279dc608fa62ef7f04b1055cd915">More...</a><br /></td></tr>
 <tr class="separator:a4e72279dc608fa62ef7f04b1055cd915"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c528607a6c5320ae0f07fbcb415461f"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LegoPartChecker_8cpp.html#a8c528607a6c5320ae0f07fbcb415461f">ALLOWED_DELTA_H</a> = 10</td></tr>
+<tr class="memitem:a8c528607a6c5320ae0f07fbcb415461f"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="LegoPartChecker_8cpp.html#a8c528607a6c5320ae0f07fbcb415461f">ALLOWED_DELTA_H</a> = 30</td></tr>
 <tr class="memdesc:a8c528607a6c5320ae0f07fbcb415461f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Height jitter allowed to still accept the <a class="el" href="classPart.html" title="Storage class for a Part. ">Part</a>.  <a href="#a8c528607a6c5320ae0f07fbcb415461f">More...</a><br /></td></tr>
 <tr class="separator:a8c528607a6c5320ae0f07fbcb415461f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><hr/>
- </div><h2 class="groupheader">Variable Documentation</h2>
+ </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ac3118bc144fa7b17c1410b6eb11b1395"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3118bc144fa7b17c1410b6eb11b1395">&#9670;&nbsp;</a></span>PRINT_DEBUG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PRINT_DEBUG&#160;&#160;&#160;true</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>should debug information be printed? </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
 <a id="a8c528607a6c5320ae0f07fbcb415461f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8c528607a6c5320ae0f07fbcb415461f">&#9670;&nbsp;</a></span>ALLOWED_DELTA_H</h2>
 
@@ -95,7 +121,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr int ALLOWED_DELTA_H = 10</td>
+          <td class="memname">constexpr int ALLOWED_DELTA_H = 30</td>
         </tr>
       </table>
   </td>
@@ -119,7 +145,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr int ALLOWED_DELTA_T = 10</td>
+          <td class="memname">constexpr int ALLOWED_DELTA_T = 100</td>
         </tr>
       </table>
   </td>
@@ -152,6 +178,8 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>current time as reference starting time for the part </p>
 
 </div>
 </div>

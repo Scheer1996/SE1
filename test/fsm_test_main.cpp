@@ -265,19 +265,19 @@ void path5() {
     dpi->setHeight(3414);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(10));
+    std::this_thread::sleep_for(milliseconds(432));
     dpi->setHeight(3720);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(10));
+    std::this_thread::sleep_for(milliseconds(456));
     dpi->setHeight(3418);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(15));
+    std::this_thread::sleep_for(milliseconds(480));
     dpi->setHeight(3114);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(15));
+    std::this_thread::sleep_for(milliseconds(456));
     dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // HeightMeasure
 
@@ -306,19 +306,19 @@ void path6() {
     dpi->setHeight(3414);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(10));
+    std::this_thread::sleep_for(milliseconds(432));
     dpi->setHeight(3720);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(10));
+    std::this_thread::sleep_for(milliseconds(456));
     dpi->setHeight(3418);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(15));
+    std::this_thread::sleep_for(milliseconds(480));
     dpi->setHeight(3114);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(15));
+    std::this_thread::sleep_for(milliseconds(456));
     dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // HeightMeasure
 
@@ -404,19 +404,19 @@ void path10() {
     dpi->setHeight(3414);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(10));
+    std::this_thread::sleep_for(milliseconds(432));
     dpi->setHeight(3720);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(10));
+    std::this_thread::sleep_for(milliseconds(456));
     dpi->setHeight(3418);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(15));
+    std::this_thread::sleep_for(milliseconds(480));
     dpi->setHeight(3114);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(15));
+    std::this_thread::sleep_for(milliseconds(456));
     dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // HeightMeasure
 
@@ -469,19 +469,19 @@ void path12() {
     dpi->setHeight(3414);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(10));
+    std::this_thread::sleep_for(milliseconds(432));
     dpi->setHeight(3720);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(10));
+    std::this_thread::sleep_for(milliseconds(456));
     dpi->setHeight(3418);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(15));
+    std::this_thread::sleep_for(milliseconds(480));
     dpi->setHeight(3114);
     fsm->eval(); // HeightMeasure
 
-    std::this_thread::sleep_for(milliseconds(15));
+    std::this_thread::sleep_for(milliseconds(456));
     dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // HeightMeasure
 
