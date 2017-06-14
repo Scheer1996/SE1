@@ -6,17 +6,27 @@
 #include <cmath>
 #include "LegoPartChecker.h"
 
-#define PRINT_DEBUG
+/**
+ * should debug information be printed?
+ */
+#define PRINT_DEBUG true
 
-#ifdef PRINT_DEBUG
+#if PRINT_DEBUG
 #include <iostream>
 using std::cout;
 using std::endl;
 #endif
 
 using namespace std::chrono;
+
+/**
+ * current time as reference starting time for the part
+ */
 static const auto ts = system_clock::now();
 
+/*
+ * @see LegoPartChecker::REFERENCE_PART
+ */
 const Part LegoPartChecker::REFERENCE_PART = { { 3414, ts }, { 3720, ts + milliseconds(432) }, {
         3418, ts + milliseconds(888) }, { 3114, ts + milliseconds(1368) }, { 3780, ts + milliseconds(1824) } };
 
@@ -43,7 +53,7 @@ LegoPartChecker::LegoPartChecker(FestoProcessSensors* sensors) :
  * @see AbstracPartChecker::checkPart
  */
 bool LegoPartChecker::checkPart(const Part* part) {
-#ifdef PRINT_DEBUG
+#if PRINT_DEBUG
     cout << "Comparing" << endl << part << endl << "to" << endl
             << REFERENCE_PART << endl;
 #endif
@@ -57,7 +67,7 @@ bool LegoPartChecker::checkPart(const Part* part) {
             p != part->getMeasurements().end(); p++, ref++) {
         // check if heights match
         if (std::abs(p->getValue() - ref->getValue()) > ALLOWED_DELTA_H) {
-#ifdef PRINT_DEBUG
+#if PRINT_DEBUG
             cout << "Rejected because of height mismatch!" << endl;
 #endif
             return false;
@@ -67,14 +77,14 @@ bool LegoPartChecker::checkPart(const Part* part) {
         if (std::abs(
                 part->getOffsetInMS(*p) - REFERENCE_PART.getOffsetInMS(*ref))
                 > ALLOWED_DELTA_T) {
-#ifdef PRINT_DEBUG
+#if PRINT_DEBUG
             cout << "Rejected because of time mismatch!" << endl;
 #endif
             return false;
         }
 
     }
-#ifdef PRINT_DEBUG
+#if PRINT_DEBUG
     cout << "Accepted" << endl;
 #endif
     return true;

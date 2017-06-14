@@ -1,8 +1,19 @@
-CXX = g++
-CXXFLAGS = -std=c++11 -g -Wall -Wfatal-errors -I. -IC:\Festo\lib
-LDFLAGS = -g
-LDLIBS = -LC:\Festo\lib -lcbw32
+# run "make clean deps" after commenting out/in
+#COMPILE_FOR_HARDWARE = 1
 
+# global compiler options
+CXX = g++
+LDFLAGS = -g
+
+ifdef COMPILE_FOR_HARDWARE
+CXXFLAGS = -std=c++11 -g -Wall -Wfatal-errors -I. -IC:\Festo\lib
+LDLIBS = -LC:\Festo\lib -lcbw32
+else
+CXXFLAGS = -std=c++11 -g -Wall -Wfatal-errors -I. -DSIL
+LDLIBS = 
+endif
+
+# which files are used in the project
 SRC = $(wildcard src/*.cpp)
 OBJ = $(SRC:%.cpp=%.o)
 
@@ -10,10 +21,10 @@ TEST_SRC = $(wildcard test/*.cpp)
 TEST_OBJ = $(TEST_SRC:%.cpp=%.o)
 
 # default target
-all: compile se1.out
+all: se1.out
 
-# test
-test: compile compile_test se1_unit_test.out se1_fsm_test.out
+# test target
+test: se1_unit_test.out se1_fsm_test.out
 
 # link everything together for executable
 se1.out: $(OBJ)
@@ -33,19 +44,18 @@ docs:
 	rm -rf docs/html
 	doxygen doxygen_config
 
-compile: $(OBJ)
-
-compile_test: $(TEST_OBJ)
-
+# remove object code, executables and test output
 clean:
 	rm -rf $(OBJ)
 	rm -rf $(TEST_OBJ)
 	rm -rf output.log
 	rm -rf *.out
 
+# update dependencies
+.PHONY: deps
 deps:
 	$(foreach file, $(SRC) $(TEST_SRC), $(CXX) -MM $(CXXFLAGS) -MT $(file:%.cpp=%.o) -MF $(file:%.cpp=%.d) $(file);)
 
-# Dependencies
--include $(SRC:%.cpp=%.d)
--include $(TEST_SRC:%.cpp=%.d)
+# include dependencies
+-include $(OBJ:%.o=%.d)
+-include $(TEST_OBJ:%.o=%.d)

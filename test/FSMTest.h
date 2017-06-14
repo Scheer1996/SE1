@@ -16,6 +16,9 @@ enum class FSMStates;
 
 #include "src/FSM.h"
 
+/**
+ * Runnable is a function with no arguments returning nothing
+ */
 using Runnable = void (void);
 
 class FSMTest {
@@ -24,4 +27,4 @@ public:
 
 };
 
-#endif /* TEST_FSMTEST_H_ */
+#endif /* FSMTEST_H */

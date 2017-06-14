@@ -1,28 +1,28 @@
 /** ****************************************************************
  * @file    test/fsm_test_main.cpp
+ * @author  Moritz Hoewer (Moritz.Hoewer@haw-hamburg.de)
+ * @version 1.0
+ * @date    14.06.2017
  ******************************************************************
  */
-
 #include "FSMTest.h"
 #include "src/DebugProcessImage.h"
 #include "src/LegoPartChecker.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include "src/config.h"
 
 using std::cout;
 using std::endl;
 using namespace std::chrono;
 
-//TODO: docmentation
-static FSM *fsm;
-static DebugProcessImage *dpi;
-
+// test framework
 void tearDown();
 void setup();
-
 void performTest(std::string name, Runnable test, const FSMStates& finalState);
 
+// test paths
 void fromStartToReady();
 void path1();
 void path2();
@@ -37,14 +37,17 @@ void path10();
 void path11();
 void path12();
 
+// colors for output
 static constexpr auto RED = "\x1b[31m";
 static constexpr auto GREEN = "\x1b[32m";
 static constexpr auto RESET = "\033[0m";
 
-static int counter = 0;
-static int failed = 0;
-static std::string failedStr = "";
-static std::string delim = "";
+static FSM *fsm; ///< pointer to current FSM
+static DebugProcessImage *dpi; ///< Pointer to current process image
+static int counter = 0; ///< how many tests have been run
+static int failed = 0; ///< how many tests have failed
+static std::string failedStr = ""; ///< buffer for storing which tests have failed
+static std::string delim = ""; ///< for fancy printing of buffer
 
 int main() {
     // Run tests
@@ -83,6 +86,11 @@ int main() {
     return 0;
 }
 
+/**
+ * Sets up the test environment.
+ * Creates a new FSM and a new DebugProcessImage, and sets up inputs for the
+ * DebugProcessImage
+ */
 void setup() {
     if (dpi || fsm) {
         tearDown();
@@ -100,11 +108,15 @@ void setup() {
     dpi->setButtonStart(false);
     dpi->setEmergencyStop(false);
 
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
 
     dpi->updateProcessImage();
 }
 
+/**
+ * Cleans up the test environment.
+ * Deletes the FSM
+ */
 void tearDown() {
     if (fsm) {
         delete fsm;
@@ -116,6 +128,15 @@ void tearDown() {
     }
 }
 
+/**
+ * Perform a test.
+ * Will setup the test environment, run the test through TestFSM, evaluate the
+ * result and clean up the test environment.
+ *
+ * @param name       name of the test (for error reporting)
+ * @param test       the test to run
+ * @param finalState the final state the FSM should be in after the test
+ */
 void performTest(std::string name, Runnable test, const FSMStates& finalState) {
     cout << "#################################" << endl;
     cout << "Running test " << name << endl;
@@ -128,7 +149,7 @@ void performTest(std::string name, Runnable test, const FSMStates& finalState) {
     counter++;
     if (!result) {
         failedStr += delim + name;
-        delim = ", ";
+        delim = ", "; // make sure that the failed paths are seperated by comma
         failed++;
     }
 }
@@ -189,7 +210,7 @@ void path3() {
     fsm->eval(); // HeightMeasure
 
     dpi->setItemAtHeightSensor(false);
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // Part Bad
 
     dpi->setItemAtBeginning(true);
@@ -216,7 +237,7 @@ void path4() {
     fsm->eval(); // HeightMeasure
 
     dpi->setItemAtHeightSensor(false);
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // Part Bad
 
     dpi->setItemAtBeginning(true);
@@ -241,23 +262,23 @@ void path5() {
 
     dpi->setItemAtBeginning(false);
     dpi->setItemAtHeightSensor(true);
-    dpi->setHeight(10);
+    dpi->setHeight(3414);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(10));
-    dpi->setHeight(20);
+    dpi->setHeight(3720);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(10));
-    dpi->setHeight(30);
+    dpi->setHeight(3418);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(15));
-    dpi->setHeight(10);
+    dpi->setHeight(3114);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(15));
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // HeightMeasure
 
     dpi->setItemAtHeightSensor(false);
@@ -282,23 +303,23 @@ void path6() {
 
     dpi->setItemAtBeginning(false);
     dpi->setItemAtHeightSensor(true);
-    dpi->setHeight(10);
+    dpi->setHeight(3414);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(10));
-    dpi->setHeight(20);
+    dpi->setHeight(3720);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(10));
-    dpi->setHeight(30);
+    dpi->setHeight(3418);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(15));
-    dpi->setHeight(10);
+    dpi->setHeight(3114);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(15));
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // HeightMeasure
 
     dpi->setItemAtHeightSensor(false);
@@ -361,7 +382,7 @@ void path9() {
     fsm->eval(); // HeightMeasure
 
     dpi->setItemAtHeightSensor(false);
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // Part Bad
 
     dpi->setItemAtEnd(true);
@@ -380,23 +401,23 @@ void path10() {
 
     dpi->setItemAtBeginning(false);
     dpi->setItemAtHeightSensor(true);
-    dpi->setHeight(10);
+    dpi->setHeight(3414);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(10));
-    dpi->setHeight(20);
+    dpi->setHeight(3720);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(10));
-    dpi->setHeight(30);
+    dpi->setHeight(3418);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(15));
-    dpi->setHeight(10);
+    dpi->setHeight(3114);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(15));
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // HeightMeasure
 
     dpi->setItemAtHeightSensor(false);
@@ -423,7 +444,7 @@ void path11() {
     fsm->eval(); // HeightMeasure
 
     dpi->setItemAtHeightSensor(false);
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // Part Bad
 
     dpi->setItemAtBeginning(true);
@@ -445,23 +466,23 @@ void path12() {
 
     dpi->setItemAtBeginning(false);
     dpi->setItemAtHeightSensor(true);
-    dpi->setHeight(10);
+    dpi->setHeight(3414);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(10));
-    dpi->setHeight(20);
+    dpi->setHeight(3720);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(10));
-    dpi->setHeight(30);
+    dpi->setHeight(3418);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(15));
-    dpi->setHeight(10);
+    dpi->setHeight(3114);
     fsm->eval(); // HeightMeasure
 
     std::this_thread::sleep_for(milliseconds(15));
-    dpi->setHeight(0);
+    dpi->setHeight(BELT_HEIGHT);
     fsm->eval(); // HeightMeasure
 
     dpi->setItemAtHeightSensor(false);

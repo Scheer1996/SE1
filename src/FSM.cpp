@@ -1,35 +1,46 @@
 /** 
- * File:   fsm.cpp
+ * @file FSM.cpp
  *
  * Class contains the controlling FSM for sorting out metal contaminated parts.
  * 
  * \author  Prof. Dr. Thomas Lehmann
+ * @author Moritz Hoewer (Moritz.Hoewer@haw-hamburg.de)
+ *
  * \version 1
  * \date    2013-11-01
+ * @date    modified: 14.06.2017
  */
 
 #include "FSM.h"
+
 #include <cmath>
 
+#include "config.h"
+
+/**
+ * should the state of the FSM be printed
+ */
 #define PRINT_STATE true
 
 #if PRINT_STATE
 #define LOGSTATE logState(currentState);
 #include <iostream>
 /**
- * Print the
- * @param state
+ * Print the state.
+ * will only print if the state changed
+ *
+ * @param state the current state
  */
 void logState(FSMStates state) {
     using std::cout;
     using std::endl;
 
-	static FSMStates lastState = FSMStates::ERROR;
-	if(state == lastState){
-		return;
-	}
-	lastState = state;
-	
+    static FSMStates lastState = FSMStates::ERROR;
+    if (state == lastState) {
+        return;
+    }
+    lastState = state;
+
     cout << "========================================" << endl;
     switch (state) {
         case FSMStates::START:
@@ -93,18 +104,6 @@ void FSM::eval() {
     process->applyOutput();
 }
 
-/**
- * threshold for considering two measurements as different.
- *
- * meant to counteract noise.
- */
-static constexpr int ALLOWED_HEIGHT_DEVIATION = 29;
-
-/**
- * height measurement of the belt (with no part on it)
- */
-static constexpr int BELT_HEIGHT = 3780;
-
 void FSM::evalEvents() {
     switch (currentState) {
         case FSMStates::START:
@@ -128,8 +127,8 @@ void FSM::evalEvents() {
             }
             break;
         case FSMStates::TRANSPORT:
-            //if (process->isItemAtHeightSensor()) {
-            if (std::abs(process->getHeight() - BELT_HEIGHT) > ALLOWED_HEIGHT_DEVIATION) {
+            if (std::abs(process->getHeight() - BELT_HEIGHT)
+                    > ALLOWED_HEIGHT_DEVIATION) {
                 currentState = FSMStates::HEIGHT_MEASURE;
             }
             if (process->isItemAtEnd() || process->isItemAtMetalDetector()) {
@@ -137,8 +136,8 @@ void FSM::evalEvents() {
             }
             break;
         case FSMStates::HEIGHT_MEASURE:
-            //if (!process->isItemAtHeightSensor()) {
-            if (std::abs(process->getHeight() - BELT_HEIGHT) < ALLOWED_HEIGHT_DEVIATION) {
+            if (std::abs(process->getHeight() - BELT_HEIGHT)
+                    < ALLOWED_HEIGHT_DEVIATION) {
                 if (plugin->result()) {
                     currentState = FSMStates::PART_OK;
                 } else {
@@ -241,7 +240,7 @@ void FSM::evalState() {
                 process->turnLightYellowOff();
                 break;
             case FSMStates::PART_OK:
-				process->driveStop();
+                process->driveStop();
                 process->driveRight();
                 process->turnLightGreenOn();
                 process->turnLightRedOff();

@@ -57,7 +57,7 @@ std::ostream& operator <<(std::ostream& os, const Measurement& m) {
 
     // print
     os << "Measurement: " << m.getValue() << " at "
-            /*<< std::put_time(std::localtime(&tm), "%H:%M:%S")*/; // TODO: add again
+            << std::put_time(std::localtime(&tm), "%H:%M:%S");
 
     return os;
 }

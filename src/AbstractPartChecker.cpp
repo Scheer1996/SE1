@@ -4,20 +4,9 @@
  */
 
 #include "AbstractPartChecker.h"
+#include "config.h"
 
 #include <cmath>
-
-/**
- * threshold for considering two measurements as different.
- *
- * meant to counteract noise.
- */
-static constexpr int ALLOWED_HEIGHT_DEVIATION = 29;
-
-/**
- * height measurement of the belt (with no part on it)
- */
-static constexpr int BELT_HEIGHT = 3780;
 
 /**
  * Constructs an AbstractPartChecker
@@ -56,7 +45,7 @@ void AbstractPartChecker::evalCycle() {
             }
             break;
         case PartCheckerState::MEASURE: { // these need to be here, because of
-                                          // the local variable currentHeight
+            // the local variable currentHeight
             int currentHeight = sensors->getHeight();
             if (std::abs(currentHeight - lastHeight)
                     > ALLOWED_HEIGHT_DEVIATION) {
@@ -95,6 +84,5 @@ bool AbstractPartChecker::result() {
 
         return result;
     }
-    //TODO: potentially throw an exception?
     return false;
 }
