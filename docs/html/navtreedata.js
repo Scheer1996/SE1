@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "Praktikum SE1", "index.html", [
+    [ "Praktikum Softwareengineering 1 - HAW Hamburg, SS17", "index.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
